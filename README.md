@@ -1,4 +1,5 @@
 TODO:
+-Compeltely redo styling lol, lowkey rip off bruinwalk, make boxes round and coloring white and blue themed
 -Add separate login page
 -Add social life rating attribute to each dorm
 -Add saxon to dorms
