@@ -1,3 +1,22 @@
+TODO:
+-Compeltely redo styling lol, lowkey rip off bruinwalk, make boxes round and coloring white and blue themed
+
+-Add separate login page
+
+-Add social life rating attribute to each dorm
+
+-Add saxon, sproul landing/cove, sproul hall to dorms
+
+-default sort reviews from most least upvoted
+
+-show only top review, press a button to display rest of reviews
+
+-Display overall average rating and average rating of each attribute next to each facility
+    -For example, for Saxon we should display next to it the average overral rating, average cleanliness rating, average noisiness rating, etc.
+
+-Have login information(whether signed in or out and email signed in with) at the top right of the page at all times
+
+
 HillTalk
 
 Introduction: 
