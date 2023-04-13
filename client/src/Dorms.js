@@ -38,21 +38,12 @@ function Dorms(){
   const [sortedAspect, setSortedAspect] = useState("");
   const [sortedNames, setSortedNames] = useState([]);
   const [showSortedResults, setShowSortedResults] = useState(false);
+  console.log(sortedAspect);
 
   useEffect(() => {
     let foundCentennial, foundDeNeve, foundHolly, foundHeddySummit, foundDykstra, foundHeddyHall, foundHitch, foundRieberHall, foundRieberVista = false;
     setSortedNames(prevArray=>[]);
     let sortedNums = [centennial, deNeve, hollyGardenia, hedrickSummit, dykstra, hedrickHall, hitch, rieberHall, rieberVista].sort((a, b) => b - a);
-    // console.log("inside useEffect(): ")
-    // console.log("bplate avg " + centennial);
-    // console.log("epic avg " + deNeve);
-    // console.log("drey avg " + hollyGardenia);
-    // console.log("rende avg" + hedrickSummit);
-    // console.log("bcafe avg " + dykstra);
-    // console.log("bruin bowl avg " + hedrickHall);
-    // console.log("de neve avg " + hitch);
-    // console.log("feast avg " + rieberHall);
-    // console.log("study avg " + rieberVista);
     
     for(let i = 0; i < sortedNums.length; i++){
       if(sortedNums[i] === centennial && !foundCentennial){
@@ -111,17 +102,6 @@ function Dorms(){
     setHitch(await hitchPromise);
     setRieberhall(await rieberHallPromise);
     setRieberVista(await rieberVistaPromise);
-
-    // console.log("inside getAverages(): ")
-    // console.log("bplate avg " + centennial);
-    // console.log("epic avg " + deNeve);
-    // console.log("drey avg " + hollyGardenia);
-    // console.log("rende avg" + hedrickSummit);
-    // console.log("bcafe avg " + dykstra);
-    // console.log("bruin bowl avg " + hedrickHall);
-    // console.log("de neve avg " + hitch);
-    // console.log("feast avg " + rieberHall);
-    // console.log("study avg " + rieberVista);
 
     setSortedAspect(props)
     setShowSortedResults(true);
@@ -268,6 +248,7 @@ function Dorms(){
         <button type='button' className="btn btn-primary" onClick={() => { getAverages(2);}}>Noise{}</button>
         <button type='button' className="btn btn-primary" onClick={() => { getAverages(3);}}>Living Space{}</button>
         <button type='button' className="btn btn-primary" onClick={() => { getAverages(4);}}>Location{}</button>
+        <button type='button' className="btn btn-primary" onClick={() => { getAverages(5);}}>Social Life{}</button>
         </ul>
         <br></br>
 
@@ -492,7 +473,12 @@ const computeAverage = async(collectionName, category) => {
       });
     }
 
-    console.log(collectionName + ". Average:" + (totalRating / length));
+    else if (category == "5"){
+  
+      readInReviews.forEach((review) =>{
+        totalRating += parseInt(review.SocialLifeRating); //add up facility rating for each review
+      });
+    }
 
     return totalRating / length;
 
@@ -516,15 +502,6 @@ const readInData = async (reviewCollectionRef) => {
 }
 
 
-
-
-
-
-
-
-
-
-
 let logged = false;
 //centennial 
 function ReviewDatabase(string){
@@ -534,6 +511,7 @@ function ReviewDatabase(string){
   const [NoiseRating, setNoiseRating] = useState(-1);   
   const [SpaceRating, setSpaceRating] = useState(-1);  
   const [LocationRating, setLocationRating] = useState(-1);  
+  const [SocialLifeRating, setSocialLifeRating] = useState(-1);  
 
   const [allReviews, setReview] = useState([]);
   const reviewCollectionRef = collection(db, string) //grabbing "CentennialReviews" collection and sets it equal to var
@@ -556,9 +534,9 @@ function ReviewDatabase(string){
       },[reducerValue])
   const createReview = async () => {
     if (logged){
-      if (LocationRating !=-1 && SpaceRating !=-1 && NoiseRating !=-1 && CleanlinessRating != -1 && LocationRating <= 5 && LocationRating >= 0 && SpaceRating <= 5 && SpaceRating >= 0 && NoiseRating <=5 && NoiseRating >=0 && CleanlinessRating <= 5 && CleanlinessRating >= 0 && input != "") {
-        await addDoc(reviewCollectionRef, { Review: input , LocationRating: Number(LocationRating), NoiseRating: Number(NoiseRating), SpaceRating: Number(SpaceRating), CleanlinessRating: Number(CleanlinessRating), 
-          Overall: ((Number(NoiseRating) + Number(LocationRating) + Number(SpaceRating) + Number(CleanlinessRating))/4),upvotes: Number(0), downvotes: Number(0), userEmail: "" })
+      if (SocialLifeRating <= 5 && SocialLifeRating >=0 && LocationRating <= 5 && LocationRating >= 0 && SpaceRating <= 5 && SpaceRating >= 0 && NoiseRating <=5 && NoiseRating >=0 && CleanlinessRating <= 5 && CleanlinessRating >= 0 && input != "") {
+        await addDoc(reviewCollectionRef, { Review: input , LocationRating: Number(LocationRating), SocialLifeRating: Number(SocialLifeRating), NoiseRating: Number(NoiseRating), SpaceRating: Number(SpaceRating), CleanlinessRating: Number(CleanlinessRating), 
+          Overall: ((Number(NoiseRating) + Number(LocationRating) + Number(SpaceRating) + Number(CleanlinessRating) + Number(SocialLifeRating))/5),upvotes: Number(0), downvotes: Number(0), userEmail: "" })
         forceUpdate();
           //alert("Review Submitted! Refresh page to view.")
       }
@@ -730,6 +708,18 @@ function ReviewDatabase(string){
       }}
       class="RatingBox"
     /></p>
+
+    <p className="no-margin">Social Life: 
+    <input 
+      placeholder="0-5" 
+      type="number"
+      min={0}
+      max={5}
+      onChange={(event) => 
+        {setSocialLifeRating(event.target.value)
+      }}
+      class="RatingBox"
+    /></p>
     
     <button onClick={createReview} className="rev-button">Submit Review</button> 
 
@@ -745,40 +735,19 @@ function ReviewDatabase(string){
             <div className="eachReview">
               <p><b>Review: </b>{review.Review}</p> 
               <p><b>Overall Rating: </b>{review.Overall}/5</p>
-              <p>Cleanliness: {review.CleanlinessRating}/5  |  Noise: {review.NoiseRating}/5  |  Living Space: {review.SpaceRating}/5  |  Location: {review.LocationRating}/5</p>
+              <p>Cleanliness: {review.CleanlinessRating}/5  |  Noise: {review.NoiseRating}/5  |  Living Space: {review.SpaceRating}/5  |  Location: {review.LocationRating}/5  |  Social Life: {review.SocialLifeRating}/5</p>
               <button onClick={() => {upVote(review.id, review.upvotes, review.userEmail)}} class="thumbsup"><span role="img" aria-label="thumbs-up">
         &#x1F44D;</span></button>{review.upvotes}
               <button onClick={() => {downVote(review.id, review.downvotes, review.userEmail)}}class="thumbsdown"><span role="img" aria-label="thumbs-down">
         &#x1F44E;
       </span></button>{review.downvotes}
-              
+              {console.log(string)}
+              {console.log(review.CleanlinessRating)}
               </div>
               );
         })}
     </div>
   );
-}
-
-
-function clickedSort(props)
-{
-    
-    if(props === 1)
-    {
-        alert('hello, this should show up if the page rendered lol, Sort by Cleanliness') 
-    }
-    if(props === 2)
-    {
-        alert('hello, this should show up if the page rendered lol, Sort by Quality');  
-    }
-    if(props === 3)
-    {
-        alert('hello, this should show up if the page rendered lol, Sort by Space');  
-    }
-    if(props === 4)
-    {
-        alert('hello, this should show up if the page rendered lol, Sort by Location');  
-    }
 }
 
 export default Dorms;
