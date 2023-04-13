@@ -3,7 +3,7 @@ TODO:
 
 -Add separate login page
 
--Add social life rating attribute to each dorm
+-Add social life rating attribute to each dorm ☑️
 
 -Add saxon, sproul landing/cove, sproul hall to dorms
 
