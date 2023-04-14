@@ -10,6 +10,7 @@ import './App.css';
 function App() {
   return (
     <Router>
+      <header>
       <h1> HillTalk </h1>
       <nav>
       <div class="nav-links">
@@ -32,6 +33,7 @@ function App() {
         </ul>
         </div>
       </nav>
+      </header>
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/DiningHalls" element={<DiningHalls />} />

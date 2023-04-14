@@ -21,55 +21,62 @@
   margin: 10px;
   }
 
+    /* HILLTALK logo on top left corner  */
+    h1 {
+      font-family: "Lucida Console";
+      text-align: left;
+      font-size: 35px;
+      padding: 0px 12px;
+      margin-right: 12px;
+    }
+    
+    header {
+      display: flex;
+      align-items: center;
+      padding: 1% 2%;
+    }
+
   /* FORMATTING NAVIGATION LINKS*/
   /* FORMATTING NAVIGATION LINKS*/
-  nav{
+  nav {
     display: flex;
-    padding: 1% 2%;
-    justify-content: space-between;
-    align-items: center;
-    position: relative
-	}
-
-  .nav-links{
-      flex: 1;
-      text-align: right;
+    flex: 1;
+    justify-content: flex-end;
   }
-
-  .nav-links ul li{
-      list-style: none;
-      display: inline-block;
-      padding: 8px 12px;
+  
+  .nav-links {
+    text-align: right;
   }
-  .nav-links ul li a{
-      color: #070101;
-      text-decoration: none;
-      font-size: 18px;
-      font-style: italic
+  
+  .nav-links ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
   }
-  .nav-links ul li::after{ 
-      content: '';
-      width: 0%;
-      height: 2px;
-      background: #030201;
-      display: block;
-      margin: auto;
-      transition: 0.5s;
+  
+  .nav-links ul li a {
+    color: #070101;
+    text-decoration: none;
+    font-size: 18px;
+    font-style: italic;
   }
-  .nav-links ul li:hover::after{
-      width:100%;
+  
+  .nav-links ul li::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: #030201;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+  }
+  
+  .nav-links ul li:hover::after {
+    width: 100%;
   }
   /* FORMATTING NAVIGATION LINKS*/
   /* FORMATTING NAVIGATION LINKS*/
-  
-  /* HILLTALK logo on top left corner  */
-  h1 {
-	  font-family: "Lucida Console";
-	  text-align: left;
-	  font-size: 35px;
-	  padding: 0px 12px;
-  }
-  
+
   /* FORMATTING MAP ON FRONT PAGE*/
   .map{
 	  display: block;
