@@ -111,17 +111,6 @@ function DiningHalls() {
     setFeastAverage(await feastAveragePromise);
     setStudyAverage(await studyAveragePromise);
 
-    // console.log("inside getAverages(): ")
-    // console.log("bplate avg " + bplateAverage);
-    // console.log("epic avg " + epicAverage);
-    // console.log("drey avg " + dreyAverage);
-    // console.log("rende avg" + rendeAverage);
-    // console.log("bcafe avg " + bcafeAverage);
-    // console.log("bruin bowl avg " + bBowlAverage);
-    // console.log("de neve avg " + deNeveAverage);
-    // console.log("feast avg " + feastAverage);
-    // console.log("study avg " + studyAverage);
-
     setSortedAspect(props)
     setShowSortedResults(true);
   }

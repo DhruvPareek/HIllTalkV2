@@ -1,13 +1,3 @@
-
-  // export default function Contacts(){
-    //     return (
-    //         <div>
-    //             <h3>
-    //                 YAYYY
-    //             </h3>
-    //         </div>
-    //     );
-    // }
     import './App.css';
     import React, { useState } from 'react';
     import {db} from "./firebase-config";

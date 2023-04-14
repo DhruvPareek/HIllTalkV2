@@ -42,7 +42,6 @@ function App() {
       <Route path="/RecCenters" element={<RecCenters />} />
       </Routes>
     </Router>
-//>>>>>>> 735cf8fc38ff55bbf54b63544c458d6ab0fed92a
   );
 }
 
