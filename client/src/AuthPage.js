@@ -14,6 +14,7 @@ export default function AuthPage() {
     const [registerPassword, setRegisterPassword] = useState("");
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
+    const [loginError, setLoginError] = useState(false);
   
     const [user, setUser] = useState({});
     useEffect(() => {
@@ -21,6 +22,7 @@ export default function AuthPage() {
     // change the user's status to logged in/out
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoginError(false);
       if (currentUser){
        logged = true; //we are logged in 
       }
@@ -37,9 +39,9 @@ export default function AuthPage() {
           registerEmail,
           registerPassword
         );
-        //console.log(user);
+        
       } catch (error) {
-        //console.log(error.message);
+        setLoginError(true);
       }
     };
   
@@ -51,9 +53,8 @@ export default function AuthPage() {
           loginEmail,
           loginPassword
         );
-        //console.log(user);
       } catch (error) {
-        //console.log(error.message);
+        setLoginError(true);
       }
     };
   
@@ -64,7 +65,9 @@ export default function AuthPage() {
     // jsx that displays map, title and login/register text on the homepage
     return (
   <html>
-  {user ? null : (
+  {user ? <div> <h3>User Logged In: {user.email} <br />
+   <button onClick={logout} className="rev-button"> Sign Out </button> </h3> 
+  </div> : (
       <div>
       <p><h2>Register User</h2> (password must be 6 letters or longer)</p>
       <input
@@ -82,7 +85,8 @@ export default function AuthPage() {
               className="loginBox"
             />
     
-      <button onClick={register}>Create User</button>
+      <button onClick={register} className="rev-button">Create User</button>
+      {loginError ? (<div className="error"> Error Logging In </div>) : null}
     <br />  <br />  <br />
     <h2>Login</h2>
     <input
@@ -99,14 +103,9 @@ export default function AuthPage() {
             }}
             className="loginBox"
           />
-    <button onClick={login}>Login</button>
+    <button onClick={login} className="rev-button">Login</button>
   </div>
   )}
-  
-  <h>User Logged In: </h>
-  {/* Changes if user has been registered */}
-  {user?user.email:"Not Logged In"}
-  <button onClick={logout} className="rev-button"> Sign Out </button>
   </html>
   
     );

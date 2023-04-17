@@ -350,7 +350,7 @@
   .rev-button {
     width: 150px;
     height: 30px;
-    border: none;
+    border: 1px solid rgb(127, 127, 127);
     outline: none;
     color: #030303;
     background: #111;
@@ -378,7 +378,7 @@
 }
 
 .rev-button:active {
-    color: rgb(195, 121, 18)
+    color: rgb(255, 255, 255)
 }
 
 .rev-button:active:after {
@@ -439,4 +439,8 @@ h5{
     /* text-shadow: -2px -2px 1px #000, 2px -2px 1px #000, -2px 2px 1px #000, 2px 2px 1px #000; */
     margin-top: 200px;
     text-align: center;
+  }
+
+  .error{
+    color: red;
   }
