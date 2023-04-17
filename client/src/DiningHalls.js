@@ -42,16 +42,6 @@ function DiningHalls() {
     let foundBplate, foundEpic, foundDrey, foundRende, foundBcafe, foundBBowl, foundDeNeve, foundFeast, foundStudy = false;
     setSortedNames(prevArray=>[]);
     let sortedNums = [bplateAverage, epicAverage, dreyAverage, rendeAverage, bcafeAverage, bBowlAverage, deNeveAverage, feastAverage, studyAverage].sort((a, b) => b - a);
-    // console.log("inside useEffect(): ")
-    // console.log("bplate avg " + bplateAverage);
-    // console.log("epic avg " + epicAverage);
-    // console.log("drey avg " + dreyAverage);
-    // console.log("rende avg" + rendeAverage);
-    // console.log("bcafe avg " + bcafeAverage);
-    // console.log("bruin bowl avg " + bBowlAverage);
-    // console.log("de neve avg " + deNeveAverage);
-    // console.log("feast avg " + feastAverage);
-    // console.log("study avg " + studyAverage);
     
     for(let i = 0; i < sortedNums.length; i++){
       if(sortedNums[i] === bplateAverage && !foundBplate){

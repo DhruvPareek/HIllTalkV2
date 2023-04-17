@@ -5,6 +5,7 @@ import DiningHalls from "./DiningHalls";
 import Contact from "./Contacts";
 import Dorms from "./Dorms";
 import RecCenters from "./RecCenters";
+import AuthPage from "./AuthPage";
 import './App.css';
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
         <ul>
           <li>
             <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/AuthPage">Login/Register</Link>
           </li>
           <li>
             <Link to="/DiningHalls">Dining Halls</Link>
@@ -35,6 +39,7 @@ function App() {
       </nav>
       </header>
       <Routes>
+      <Route path="/AuthPage" element={<AuthPage />} />
       <Route path="/" element={<Home />} />
       <Route path="/DiningHalls" element={<DiningHalls />} />
       <Route path="/contact" element={<Contact />} />

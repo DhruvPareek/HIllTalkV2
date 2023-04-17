@@ -532,13 +532,14 @@ function ReviewDatabase(string){
         }
       });
       },[reducerValue])
-  const createReview = async () => {
+
+    const createReview = async () => {
     if (logged){
       if (SocialLifeRating <= 5 && SocialLifeRating >=0 && LocationRating <= 5 && LocationRating >= 0 && SpaceRating <= 5 && SpaceRating >= 0 && NoiseRating <=5 && NoiseRating >=0 && CleanlinessRating <= 5 && CleanlinessRating >= 0 && input != "") {
         await addDoc(reviewCollectionRef, { Review: input , LocationRating: Number(LocationRating), SocialLifeRating: Number(SocialLifeRating), NoiseRating: Number(NoiseRating), SpaceRating: Number(SpaceRating), CleanlinessRating: Number(CleanlinessRating), 
           Overall: ((Number(NoiseRating) + Number(LocationRating) + Number(SpaceRating) + Number(CleanlinessRating) + Number(SocialLifeRating))/5),upvotes: Number(0), downvotes: Number(0), userEmail: "" })
+        sortReview();
         forceUpdate();
-          //alert("Review Submitted! Refresh page to view.")
       }
       else{
         Swal.fire({
@@ -576,6 +577,7 @@ function ReviewDatabase(string){
         const reviewDoc = doc(db, string, id);
         const newFields = {upvotes: numupvotes + 1, userEmail: [...userEmail, auth.currentUser.email]};
         await updateDoc(reviewDoc, newFields);
+        sortReview();
         forceUpdate();
         //alert("Upvote counted!! Refresh page to view.")
       }
@@ -605,6 +607,7 @@ function ReviewDatabase(string){
         const reviewDoc = doc(db, string, id);
         const newFields = {downvotes: numdownvotes + 1, userEmail: [...userEmail, auth.currentUser.email]};
         await updateDoc(reviewDoc, newFields);
+        sortReview();
         forceUpdate();
         //alert("Downvote counted!! Refresh page to view.")
       }else{
@@ -634,12 +637,12 @@ function ReviewDatabase(string){
     readInReviews.sort((a, b) => b.upvotes - a.upvotes); //sorts from most popular -> least 
 
     setReview(readInReviews);
+    console.log("ENTEREDEDEDED");
+    forceUpdate();
   }
 
 
   useEffect(() => {
-    
-
     const getReviews = async () => {
       const data = await getDocs(reviewCollectionRef);
       setReview(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
@@ -725,7 +728,6 @@ function ReviewDatabase(string){
 
     {/* //<button onClick={sortReview} className="rev-button">Sort by Popularity</button>  */}
 
-
     </div>
     </div>
 
@@ -773,4 +775,3 @@ export default Dorms;
 //   // const sortedReviews = querySnapshot.docs.map((doc) => doc.data()); //maps snapshots to data objects
 //   // console.log(sortedReviews);
 //   // setReviews(sortedReviews); 
-// };
