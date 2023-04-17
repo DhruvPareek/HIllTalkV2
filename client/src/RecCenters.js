@@ -158,7 +158,7 @@ function RecCenters() {
 <body>
 <img src="https://linespace.com/wp-content/uploads/2018/03/UCLA_BeFit_091615_04-1170x658.jpg" alt="BFit" width="720" height="405" class = "RecCenterCover"/>
   <p>Here you can find every recreation center on campus.</p>
-   <b>Sort By:</b>
+  <span className="blueText"><b>Sort By:</b></span>
    <ul>
     <button type='button' className="btn btn-primary" onClick={() => { getAverages(1);}}>Facility Maintenance{}</button>
     <button type='button' className="btn btn-primary" onClick={() => { getAverages(2);}}>Hours{}</button>
@@ -171,8 +171,8 @@ function RecCenters() {
     <div class="searchBox">
         <h4>Search For Keywords in Reviews:</h4>
         <input type="text" value = {searchTerm}  onChange={event => setSearchTerm(event.target.value)} 
-        id="searchBox" placeholder="Enter keywords..."></input>
-       <button onClick={handleSearch}>Search</button><br />
+        id="searchBox" placeholder="Enter keywords..." size="50"></input>
+       <button onClick={handleSearch} className="rev-button">Search</button><br />
        </div>
 
        <div class="SearchResults">  {showSearchResults ? (
@@ -599,9 +599,9 @@ function ReviewDatabase(string){
           {reviews.map((review) => {
             return (
                 <div className="eachReview">
-                    <p><b>Review: </b>{review.TextReview}</p>
-                    <p><b>Overall Rating: </b>{review.Overall}/5</p>
-                    <p>Facility Maintenance: {review.FacilityQRating}/5  |  Hours: {review.HoursRating}/5  |  Space: {review.SpaceRating}/5  |  Location: {review.LocationRating}/5  |  Activity Level: {review.BusinessRating}/5 </p>
+                    <p><span className="blueText"><b>Review: </b></ span>{review.TextReview}</p>
+                    <p><span className="blueText"><b>Overall Rating: </b></span>{review.Overall}/5</p>
+                    <p><span className="blueText">Facility Maintenance:</span> {review.FacilityQRating}/5 <span className="blueText"> |  Hours:</span> {review.HoursRating}/5 <span className="blueText"> |  Space: </span>{review.SpaceRating}/5 <span className="blueText"> |  Location:</span> {review.LocationRating}/5 <span className="blueText"> |  Activity Level:</span> {review.BusinessRating}/5 </p>
 
                      <button onClick={() => {upVote(review.id, review.upvotes, review.userEmail)}} class="thumbsup"><span role="img" aria-label="thumbs-up">
         &#x1F44D;</span></button>{review.upvotes}

@@ -28,12 +28,14 @@
       font-size: 35px;
       padding: 0px 12px;
       margin-right: 12px;
+      color:rgb(39, 116, 174);
     }
     
     header {
       display: flex;
       align-items: center;
       padding: 1% 2%;
+      color:rgb(39, 116, 174);
     }
 
   /* FORMATTING NAVIGATION LINKS*/
@@ -55,7 +57,7 @@
   }
   
   .nav-links ul li a {
-    color: #070101;
+    color:rgb(39, 116, 174);
     text-decoration: none;
     font-size: 18px;
     font-style: italic;
@@ -83,13 +85,13 @@
 	  margin-left: auto;
 	  margin-right: auto;
 	  width: 41%;
-	  border: 5px solid #555;
+	  border: 5px solid rgb(39, 116, 174);
 
   }
   
   body {
 	text-align: center;
-  background-color: rgb(247, 239, 228);
+  background-color: rgb(255, 255, 255);
   }
 
   /* formatting the main picture on each page  */
@@ -99,7 +101,7 @@
 	  margin-left: auto;
 	  margin-right: auto;
 	  width: 30%;
-	border: 5px solid #555;
+	border: 5px solid rgb(39, 116, 174);
   }
   
   .DormsCover{
@@ -107,7 +109,7 @@
 	  margin-left: auto;
 	  margin-right: auto;
 	  width: 40%;
-	border: 5px solid #555;
+	border: 5px solid rgb(39, 116, 174);
   }
   
   .RecCenterCover{
@@ -115,7 +117,7 @@
 	  margin-left: auto;
 	  margin-right: auto;
 	  width: 43%;
-	border: 5px solid #555;
+	border: 5px solid rgb(39, 116, 174);
   }
   /* formatting the main picture on each page  */
   /* formatting the main picture on each page  */
@@ -123,39 +125,39 @@
   /*formatting pictures of each dorm*/
   /*formatting pictures of each dorm*/
   .CentennialOlympic{
-	  border: 5px solid #555;
+	  border: 5px solid rgb(39, 116, 174);
   }
   .DeNeveDorms{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
   }
   .HollyGardenia{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
   }
   .HSummit{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
   }
 
   .Dykstra{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 22%;
   }
 
   .HedrickPic{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
   }
 
   .HitchSuitesPics{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 23%;
   }
 
   .rieberHall{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 25%;
   }
 
   .RieberTerraceVista{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 25%;
   }
   /*formatting pictures of each dorm*/
@@ -165,48 +167,48 @@
   /*formatting pictures of each dining hall*/
 
   .Rendezvous{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 22%;
   }
 
   .DeNeveDH{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 20%;
   }
 
   .Epicuria{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 20%;
 
   }
 
   .Bplate{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 20%;
 
   }
 
   .TheStudy{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
   }
 
   .BCafe{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 20%;
   }
 
   .BruinBowl{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 22%;
 
   }
 
   .FEAST{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
   }
 
   .Drey{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 20%;
   }
   /*formatting pictures of each dining hall*/
@@ -216,28 +218,28 @@
   /*formatting pictures of each Rec center*/
   
   .JWC{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 23%;
   }
 
   .BFIT{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 23%;
   }
 
   .SUNSETREC{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 20%;
 
   }
 
   .HITCHBB{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 26%;
   }
 
   .IMFIELD{
-    border: 5px solid #555;
+    border: 5px solid rgb(39, 116, 174);
     width: 23%;
   }
 
@@ -250,8 +252,8 @@
 .btn-primary{
   display: inline-block;
   text-decoration: none;
-  color: #080000;
-  border: 1px solid #080000;
+  color: rgb(39, 116, 174);
+  border: 1px solid rgb(39, 116, 174);
   font-size: 13px;
   padding: 6px 10px;
   background: transparent;
@@ -261,14 +263,14 @@
 
 .btn-primary:hover{
   border: 1px solid #040404;
-  background: #ffffff;
+  background: #d7d7d7;
   transition: .6s;
 }
 /*formatting sort buttons*/
 /*formatting sort buttons*/
 
 .ReviewBox{
-	border: 2px solid #000000;
+	border: 2px solid rgb(39, 116, 174);
 	margin-right: 10px;
   width: 725px;
   text-align: left;
@@ -276,12 +278,12 @@
 
   .RatingBox{
 	width: 40px;
-	border: 2px solid #000000;
+	border: 2px solid rgb(39, 116, 174);
 	margin-right: 10px;
   }
 
 .loginBox{
-	border: 2px solid #000000;
+	border: 2px solid rgb(39, 116, 174);
 	margin-right: 10px;
   width: 250px;
   text-align: left;
@@ -301,8 +303,9 @@
 	border: 2px solid #cf3131;
 }
 
+
 .eachReview{
-  border: 1px solid #555;
+  border: 1px solid rgb(39, 116, 174);
   margin-left: 250px;
   margin-right: 250px;
 }
@@ -324,8 +327,12 @@
 
   .no-margin{
 	margin: 10px;
+  color: rgb(39, 116, 174);
   }
 
+  .RevTitles{
+    color: rgb(39, 116, 174);
+  }
 
   /* buttons adding and sorting reviews */
 
@@ -350,7 +357,7 @@
   .rev-button {
     width: 150px;
     height: 30px;
-    border: 1px solid rgb(127, 127, 127);
+    border: 1px solid rgb(39, 116, 174);;
     outline: none;
     color: #030303;
     background: #111;
@@ -443,4 +450,16 @@ h5{
 
   .error{
     color: red;
+  }
+
+  h3{
+    color:rgb(39, 116, 174);
+  }
+
+  h4{
+    color:rgb(39, 116, 174);
+  }
+
+  .blueText{
+    color: rgb(39, 116, 174);
   }

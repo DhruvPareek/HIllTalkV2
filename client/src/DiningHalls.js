@@ -240,7 +240,7 @@ function DiningHalls() {
         <body>
           <img src="https://s3.amazonaws.com/cms.ipressroom.com/173/files/20160/56a670f2bd26f54876001535_UCLAOlympicVillage6/UCLAOlympicVillage6_4d51350a-2c04-4d93-8fe3-ac4e6b248efc-prv.jpg" alt="Bplate" width="720" height="405" class = "DiningHallCover" />
           <p>This page contains every dining hall, takeout and buffet style places from around the hill.</p>
-           <b>Sort By:</b>
+           <span className="blueText"><b>Sort By:</b></span>
            <ul>
             {/* Buttons for sorting */}
             <button type='button' className="btn btn-primary" onClick={() => { getAverages(1);}}>Healthiness{}</button>  
@@ -254,8 +254,8 @@ function DiningHalls() {
             <div class="searchBox">
         <h4>Search For Keywords in Reviews:</h4>
         <input type="text" value = {searchTerm}  onChange={event => setSearchTerm(event.target.value)} 
-        id="searchBox" placeholder="Enter keywords..."></input>
-       <button onClick={handleSearch}>Search</button><br />
+        id="searchBox" placeholder="Enter keywords..." size="50" ></input>
+       <button onClick={handleSearch} className="rev-button">Search</button><br />
        </div>
 
        <div class="SearchResults">  {showSearchResults ? (
@@ -714,9 +714,9 @@ function ReviewDatabase(string){
           <div className="eachReview">
 
             {/* Display each rating and the reviews */}
-            <p><b>Review: </b>{review.Review}</p>
-            <p><b>Overall Rating: </b>{review.Overall}</p>
-            <p>Healthiness: {review.HealthRating}/5  |  Tastiness: {review.QualityRating}/5  |  Wait Time: {review.TimeRating}/5  |  Availability of Seating: {review.SeatingRating}/5</p>
+            <p><span className="RevTitles"><b>Review: </b></span>{review.Review}</p>
+            <p><span className="RevTitles"><b>Overall Rating: </b></span>{review.Overall}</p>
+            <p><span className="RevTitles">Healthiness: </span><span>{review.HealthRating}/5</span><span className="RevTitles">  |  Tastiness: </span><span>{review.QualityRating}/5</span><span className="RevTitles">  |  Wait Time: </span><span>{review.TimeRating}/5</span><span className="RevTitles">  |  Availability of Seating: </span><span>{review.SeatingRating}/5</span></p>
 
             {/* Display upvotes */}
             <button onClick={() => {upVote(review.id, review.upvotes, review.userEmail)}} class="thumbsup"><span role="img" aria-label="thumbs-up">

@@ -242,7 +242,7 @@ function Dorms(){
       <p>Here you can find every dorm on campus.</p>
 
 
-       <b>Sort By:</b>
+       <span className="blueText"><b>Sort By:</b></span>
        <ul>
         <button type='button' className="btn btn-primary" onClick={() => { getAverages(1);}}>Cleanliness{}</button>
         <button type='button' className="btn btn-primary" onClick={() => { getAverages(2);}}>Noise{}</button>
@@ -255,8 +255,8 @@ function Dorms(){
         <div class="searchBox">
         <h4>Search For Keywords in Reviews:</h4>
         <input type="text" value = {searchTerm}  onChange={event => setSearchTerm(event.target.value)} 
-        id="searchBox" placeholder="Enter keywords..."></input>
-       <button onClick={handleSearch}>Search</button><br />
+        id="searchBox" placeholder="Enter keywords..." size="50"></input>
+       <button onClick={handleSearch} className="rev-button">Search</button><br />
        </div>
 
        <div class="SearchResults">  {showSearchResults ? (
@@ -735,9 +735,9 @@ function ReviewDatabase(string){
         {allReviews.map((review) => {
           return (
             <div className="eachReview">
-              <p><b>Review: </b>{review.Review}</p> 
-              <p><b>Overall Rating: </b>{review.Overall}/5</p>
-              <p>Cleanliness: {review.CleanlinessRating}/5  |  Noise: {review.NoiseRating}/5  |  Living Space: {review.SpaceRating}/5  |  Location: {review.LocationRating}/5  |  Social Life: {review.SocialLifeRating}/5</p>
+              <p><b><span className="blueText">Review: </span></b>{review.Review}</p> 
+              <p><b><span className="blueText">Overall Rating: </span> </b>{review.Overall}/5</p>
+              <p><span className="blueText">Cleanliness:  </span>{review.CleanlinessRating}/5 <span className="blueText">|  Noise:  </span>{review.NoiseRating}/5 <span className="blueText"> |  Living Space:  </span> {review.SpaceRating}/5 <span className="blueText"> |  Location: </span> {review.LocationRating}/5 <span className="blueText"> |  Social Life:  </span>{review.SocialLifeRating}/5</p>
               <button onClick={() => {upVote(review.id, review.upvotes, review.userEmail)}} class="thumbsup"><span role="img" aria-label="thumbs-up">
         &#x1F44D;</span></button>{review.upvotes}
               <button onClick={() => {downVote(review.id, review.downvotes, review.userEmail)}}class="thumbsdown"><span role="img" aria-label="thumbs-down">
