@@ -5,7 +5,9 @@ TODO:
 
 -Add social life rating attribute to each dorm ☑️
 
--Add saxon, sproul landing/cove, sproul hall to dorms
+-Add saxon, sproul landing/cove, sunset, sproul hall to dorms
+
+-Add university apartments
 
 -default sort reviews from most least upvoted
 
