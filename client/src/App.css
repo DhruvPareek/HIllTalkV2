@@ -252,8 +252,8 @@
 .btn-primary{
   display: inline-block;
   text-decoration: none;
-  color: rgb(39, 116, 174);
-  border: 1px solid rgb(39, 116, 174);
+  color: black;
+  border: 1px solid black;
   font-size: 13px;
   padding: 6px 10px;
   background: transparent;
@@ -305,9 +305,14 @@
 
 
 .eachReview{
-  border: 1px solid rgb(39, 116, 174);
+  border: 2px solid rgb(39, 116, 174);
+  background-color: rgb(126, 195, 247);
+  border-radius: 25px;
   margin-left: 250px;
   margin-right: 250px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
 }
 
 .form-container {
@@ -342,13 +347,13 @@
   }
 
   .SearchResults{
-    border: 1px solid #555;
+    border: 2px solid #555;
     margin-left: 275px;
     margin-right: 275px;
   }
 
   .searchBox{
-    border: 1px solid #555;
+    border: 2px solid #555;
     margin-left: 275px;
     margin-right: 275px;
   }
@@ -357,10 +362,10 @@
   .rev-button {
     width: 150px;
     height: 30px;
-    border: 1px solid rgb(39, 116, 174);;
+    border: 2px solid black;
     outline: none;
-    color: #030303;
-    background: #111;
+    color: #000000;
+    background: rgb(127, 127, 127);
     cursor: pointer;
     position: relative;
     z-index: 0;
@@ -448,18 +453,25 @@ h5{
     text-align: center;
   }
 
-  .error{
-    color: red;
-  }
-
   h3{
     color:rgb(39, 116, 174);
   }
 
   h4{
-    color:rgb(39, 116, 174);
+    /*color:rgb(39, 116, 174);*/
   }
 
   .blueText{
     color: rgb(39, 116, 174);
+  }
+
+  .blueBackground{
+    background-color: rgb(126, 195, 247);
+  }
+
+  .introText{
+    padding-top: 15px;
+  }
+  .loginText{
+    font-size: 20px;
   }

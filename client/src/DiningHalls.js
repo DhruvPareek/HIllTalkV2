@@ -239,8 +239,10 @@ function DiningHalls() {
         </head>
         <body>
           <img src="https://s3.amazonaws.com/cms.ipressroom.com/173/files/20160/56a670f2bd26f54876001535_UCLAOlympicVillage6/UCLAOlympicVillage6_4d51350a-2c04-4d93-8fe3-ac4e6b248efc-prv.jpg" alt="Bplate" width="720" height="405" class = "DiningHallCover" />
-          <p>This page contains every dining hall, takeout and buffet style places from around the hill.</p>
-           <span className="blueText"><b>Sort By:</b></span>
+          <br />
+          <div className="blueBackground">
+          <p className="introText">This page contains every dining hall, takeout and buffet style places from around the hill.</p>
+           <b>Sort By:</b>
            <ul>
             {/* Buttons for sorting */}
             <button type='button' className="btn btn-primary" onClick={() => { getAverages(1);}}>Healthiness{}</button>  
@@ -264,7 +266,9 @@ function DiningHalls() {
         <p key={result}>{result}<br /><br /><br /></p>
       ))}
     </div>
+    
   ) : null}</div><br /><br />
+  </div>
   {showSortedResults ? 
   // display sorted dining halls
   (<div>

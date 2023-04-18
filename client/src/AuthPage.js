@@ -65,8 +65,8 @@ export default function AuthPage() {
     // jsx that displays map, title and login/register text on the homepage
     return (
   <html>
-  {user ? <div> <h3>User Logged In: {user.email} <br />
-   <button onClick={logout} className="rev-button"> Sign Out </button> </h3> 
+  {user ? <div> <p className="loginText"> User Logged In: {user.email} </p>
+   <p><button onClick={logout} className="rev-button"> Sign Out </button> </p> 
   </div> : (
       <div>
       <p><h2>Register User</h2> (password must be 6 letters or longer)</p>
