@@ -2,8 +2,6 @@ import {useState, useEffect, useReducer} from "react";
 import React from 'react';
 import './App.css';
 
-//import{logged} from './Home.js';
-
 import {db} from "./firebase-config"
 import {collection, getDocs, addDoc, updateDoc, doc} from "firebase/firestore";
 
@@ -12,7 +10,6 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "./firebase-config";
-
 
 import Swal from "sweetalert2";
 
@@ -510,7 +507,6 @@ const readInData = async (reviewCollectionRef) => {
 
 // copy this into every file where there are reviews for authentication, also need one import statement thats at the top
 let logged = false;
-let currUsername = "";
 function ReviewDatabase(string){
     const [Reviews, setReview] = useState([]); //hook instead of class
     const ReviewCollectionRef = collection(db, string) //gets the collection of reviews from the database and stores into var
