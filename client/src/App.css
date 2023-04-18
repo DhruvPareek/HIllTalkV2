@@ -306,7 +306,7 @@
 
 .eachReview{
   border: 2px solid rgb(39, 116, 174);
-  background-color: rgb(126, 195, 247);
+  background-color: rgb(152, 211, 255);
   border-radius: 25px;
   margin-left: 250px;
   margin-right: 250px;
@@ -466,7 +466,7 @@ h5{
   }
 
   .blueBackground{
-    background-color: rgb(126, 195, 247);
+    background-color: rgb(152, 211, 255);
   }
 
   .introText{
