@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import { auth } from "./firebase-config";
 import "./App.css";
+import Swal from "sweetalert2";
 
 export let logged = false;
 export default function AuthPage() {
@@ -14,7 +15,6 @@ export default function AuthPage() {
     const [registerPassword, setRegisterPassword] = useState("");
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
-    const [loginError, setLoginError] = useState(false);
   
     const [user, setUser] = useState({});
     useEffect(() => {
@@ -22,7 +22,6 @@ export default function AuthPage() {
     // change the user's status to logged in/out
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoginError(false);
       if (currentUser){
        logged = true; //we are logged in 
       }
@@ -41,7 +40,12 @@ export default function AuthPage() {
         );
         
       } catch (error) {
-        setLoginError(true);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: "Email may not be valid or already registered",
+          footer: '<a href="/contact">Having Issues? - Contact Us!</a>'
+        }) 
       }
     };
   
@@ -54,7 +58,12 @@ export default function AuthPage() {
           loginPassword
         );
       } catch (error) {
-        setLoginError(true);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: "Incorrect email or password",
+          footer: '<a href="/contact">Having Issues? - Contact Us!</a>'
+        }) 
       }
     };
   
@@ -86,7 +95,6 @@ export default function AuthPage() {
             />
     
       <button onClick={register} className="rev-button">Create User</button>
-      {loginError ? (<div className="error"> Error Logging In </div>) : null}
     <br />  <br />  <br />
     <h2>Login</h2>
     <input
