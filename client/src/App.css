@@ -76,6 +76,19 @@
   .nav-links ul li:hover::after {
     width: 100%;
   }
+
+  .loginReg{
+    color: white !important;
+    padding: 10px;
+    border: 3px rgb(15, 58, 91);
+    border-style: solid;
+    background-color: rgb(39, 116, 174);
+  }
+
+  .loginReg:hover {
+    background-color: rgb(18, 75, 119);
+    color: rgb(39, 116, 174);
+  }
   /* FORMATTING NAVIGATION LINKS*/
   /* FORMATTING NAVIGATION LINKS*/
 
@@ -474,37 +487,4 @@ h5{
   }
   .loginText{
     font-size: 20px;
-  }
-
-  .loginStuff{
-    display: flex;
-    flex: 1;
-    justify-content: flex-end;
-    text-align: right;
-  }
-
-  .loginStuff ul li {
-    display: inline-block;
-    padding: 8px 12px;
-  }
-  
-  .loginStuff ul li a {
-    color:rgb(39, 116, 174);
-    text-decoration: none;
-    font-size: 18px;
-    font-style: italic;
-  }
-  
-  .loginStuff ul li::after {
-    content: "";
-    width: 0%;
-    height: 2px;
-    background: #030201;
-    display: block;
-    margin: auto;
-    transition: 0.5s;
-  }
-  
-  .loginStuff ul li:hover::after {
-    width: 100%;
   }

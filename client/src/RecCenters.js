@@ -418,8 +418,7 @@ function ReviewDatabase(string){
           
             icon: 'error',
             title: 'Oops...',
-            text: "Please leave a review and rating for each field (0-5) in order to submit",
-            footer: '<a href="/contact">Having Issues? - Contact Us!</a>'
+            text: "Please leave a review and rating for each field (0-5) in order to submit"
           })  
       }
     }
@@ -428,8 +427,7 @@ function ReviewDatabase(string){
           
         icon: 'error',
         title: 'Oops...',
-        text: "Please login at Home Page before leaving a review",
-        footer: '<a href="/contact">Having Issues? - Contact Us!</a>'
+        text: "Please login at Home Page before leaving a review"
       })  
     }
     };
@@ -441,8 +439,7 @@ function ReviewDatabase(string){
           
           icon: 'error',
           title: 'Oops...',
-          text: "You have already voted on this review!",
-          footer: '<a href="/contact">Having Issues? - Contact Us!</a>'
+          text: "You have already voted on this review!"
         })  
       }
       else if(logged){
@@ -456,8 +453,7 @@ function ReviewDatabase(string){
           
           icon: 'error',
           title: 'Oops...',
-          text: "Please Login at Home Page before Upvoting!",
-          footer: '<a href="/contact">Having Issues? - Contact Us!</a>'
+          text: "Please Login at Home Page before Upvoting!"
         })  
       }
     }
@@ -469,8 +465,7 @@ function ReviewDatabase(string){
           
           icon: 'error',
           title: 'Oops...',
-          text: "You have already voted on this review!",
-          footer: '<a href="/contact">Having Issues? - Contact Us!</a>'
+          text: "You have already voted on this review!"
         })  
       }
       else if(logged){
@@ -484,8 +479,7 @@ function ReviewDatabase(string){
           
           icon: 'error',
           title: 'Oops...',
-          text: "Please Login at Home Page before DownVoting!",
-          footer: '<a href="/contact">Having Issues? - Contact Us!</a>'
+          text: "Please Login at Home Page before DownVoting!"
         })  
       }
     }

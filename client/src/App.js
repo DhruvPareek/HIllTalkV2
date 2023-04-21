@@ -39,7 +39,7 @@ function App() {
       <header>
       <h1> HillTalk </h1>
       <nav>
-      {logged ? (<div className="loginStuff"><Link to="/AuthPage">Signed In: {user.email}</Link></div>) : (<div className="loginStuff"><Link to="/AuthPage">Login/Register</Link></div>)}
+      {/* {logged ? (<Link to="/AuthPage">Signed In: {user.email}</Link>) : (<Link to="/AuthPage" className="loginReg">Login/Register</Link>)} */}
       <div class="nav-links">
         <ul>
           <li>
@@ -54,8 +54,11 @@ function App() {
           <li>
             <Link to="/RecCenters">Recreation Centers</Link>
           </li>
-          <li>
+          {/* <li> Don't really even need this page right now
             <Link to="/contact">Contact Us</Link>
+          </li> */}
+          <li>
+          {logged ? (<Link to="/AuthPage" className="loginReg">{user.email}</Link>) : (<Link to="/AuthPage" className="loginReg">Login/Register</Link>)}
           </li>
         </ul>
         </div>

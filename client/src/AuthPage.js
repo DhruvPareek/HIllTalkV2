@@ -43,8 +43,7 @@ export default function AuthPage() {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: "Email may not be valid or already registered",
-          footer: '<a href="/contact">Having Issues? - Contact Us!</a>'
+          text: "Email may not be valid or already registered"
         }) 
       }
     };
@@ -61,8 +60,7 @@ export default function AuthPage() {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: "Incorrect email or password",
-          footer: '<a href="/contact">Having Issues? - Contact Us!</a>'
+          text: "Incorrect email or password"
         }) 
       }
     };
