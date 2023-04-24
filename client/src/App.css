@@ -1,4 +1,4 @@
-.App {
+App {
 	text-align: center;
   }
 
@@ -86,8 +86,9 @@
   }
 
   .loginReg:hover {
-    background-color: rgb(18, 75, 119);
-    color: rgb(39, 116, 174);
+    background-color: rgb(29, 100, 155);
+    color: rgb(35, 101, 151);
+    transition: 0.5s;
   }
   /* FORMATTING NAVIGATION LINKS*/
   /* FORMATTING NAVIGATION LINKS*/
@@ -276,7 +277,7 @@
 
 .btn-primary:hover{
   border: 1px solid #040404;
-  background: #d7d7d7;
+  background: rgba(58, 147, 215, 0.58);
   transition: .6s;
 }
 /*formatting sort buttons*/
@@ -303,11 +304,15 @@
   margin-bottom: 5px;
 }
 
-  
 .thumbsup{
 	font-size: 20px;
 	margin: 4px;
-	border: 2px solid #268b3c;
+	border: 2px solid #51c86b;
+}
+
+.thumbsup:hover{
+  background-color: #81ca91;
+  color: white;
 }
 
 .thumbsdown{
@@ -316,6 +321,10 @@
 	border: 2px solid #cf3131;
 }
 
+.thumbsdown:hover{
+  background-color: #ee9797;
+  color: white;
+}
 
 .eachReview{
   border: 2px solid rgb(39, 116, 174);
@@ -349,7 +358,7 @@
   }
 
   .RevTitles{
-    color: rgb(39, 116, 174);
+    color: rgb(29, 92, 141);
   }
 
   /* buttons adding and sorting reviews */
@@ -479,7 +488,7 @@ h5{
   }
 
   .blueBackground{
-    background-color: rgba(152, 210, 255, 0.596);
+    background-color: rgba(146, 208, 255, 0.673);
   }
 
   .introText{

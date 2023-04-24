@@ -239,10 +239,11 @@ function Dorms(){
     </head>
     <body>
     <img src="https://i.pinimg.com/736x/26/04/67/2604674112dd693949fa3cc6babe7c71--dorm-ideas-hall.jpg" alt="tripleClassic" width="720" height="405" class = "DormsCover"/>
-      <p>Here you can find every dorm on campus.</p>
+    <br />
 
-
-       <span className="blueText"><b>Sort By:</b></span>
+    <div className="blueBackground">
+      <p className="introText">Here you can find every dorm on campus.</p>
+       <b>Sort By:</b>
        <ul>
         <button type='button' className="btn btn-primary" onClick={() => { getAverages(1);}}>Cleanliness{}</button>
         <button type='button' className="btn btn-primary" onClick={() => { getAverages(2);}}>Noise{}</button>
@@ -266,6 +267,7 @@ function Dorms(){
       ))}
     </div>
   ) : null}</div><br /><br />
+  </div>
 
 {showSortedResults ? 
   (<div>

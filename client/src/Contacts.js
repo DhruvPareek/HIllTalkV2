@@ -22,7 +22,6 @@
             text: "Your inquiry has been submitted.",
             footer: '<a href="/contact">Having Issues? - Contact Us!</a>'
           })  
-            //alert("Review Submitted!! Refresh page to view.")
         }
         else{
           Swal.fire({

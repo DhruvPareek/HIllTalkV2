@@ -157,8 +157,10 @@ function RecCenters() {
 </head>
 <body>
 <img src="https://linespace.com/wp-content/uploads/2018/03/UCLA_BeFit_091615_04-1170x658.jpg" alt="BFit" width="720" height="405" class = "RecCenterCover"/>
-  <p>Here you can find every recreation center on campus.</p>
-  <span className="blueText"><b>Sort By:</b></span>
+<br />
+  <div className="blueBackground">
+  <p className="introText">Here you can find every recreation center on campus.</p>
+  <b>Sort By:</b>
    <ul>
     <button type='button' className="btn btn-primary" onClick={() => { getAverages(1);}}>Facility Maintenance{}</button>
     <button type='button' className="btn btn-primary" onClick={() => { getAverages(2);}}>Hours{}</button>
@@ -182,6 +184,7 @@ function RecCenters() {
       ))}
     </div>
   ) : null}</div><br /><br />
+  </div>
   
   {showSortedResults ? 
   (<div>
