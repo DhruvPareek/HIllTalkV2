@@ -1,5 +1,5 @@
 TODO:
--Compeltely redo styling lol, lowkey rip off bruinwalk, make boxes round and coloring white and blue themed
+-Compeltely redo styling lol, lowkey like bruinwalk, make boxes round and coloring white and blue themed
 
 -Add separate login page ☑️
 
