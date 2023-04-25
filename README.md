@@ -7,6 +7,8 @@ TODO:
 
 -Add saxon, sproul landing/cove, sunset, sproul hall to dorms
 
+-Split rendezvous into west and east
+
 -Add university apartments
 
 -default sort reviews from most least upvoted
