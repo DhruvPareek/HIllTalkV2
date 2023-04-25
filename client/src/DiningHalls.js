@@ -21,7 +21,7 @@ function DiningHalls() {
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [matchingResults, setMatchingResults] = useState([]);
 
-  //hooks for sorting functionality 
+  //hooks for sorting functionality --> for each dining hall this will have an average rating for a specific aspect
   const [bplateAverage, setBplateAverage] = useState(0);
   const [epicAverage, setEpicAverage] = useState(0);
   const [dreyAverage, setDreyAverage] = useState(0);
@@ -31,15 +31,25 @@ function DiningHalls() {
   const [deNeveAverage, setDeNeveAverage] = useState(0);
   const [feastAverage, setFeastAverage] = useState(0);
   const [studyAverage, setStudyAverage] = useState(0);
+  //hooks for sorting functionality --> for each dining hall this will have an average rating for a specific aspect
+
   const [sortedAspect, setSortedAspect] = useState("");
   const [sortedNames, setSortedNames] = useState([]);
   const [showSortedResults, setShowSortedResults] = useState(false);
 
+  //hooks for average rating functionality for each DH
+  const [healthAverage, setHealthAverage] = useState(0);
+  const [tasteAverage, setTasteAverage] = useState(0);
+  const [waitAverage, setWaitAverage] =  useState(0);
+  const [seatingAverage, setSeatingAverage] = useState(0);
+  //hooks for average rating functionality for each DH
+
+  //SETS ORDER FOR SORTING BY SPECIFIC ELEMENT
   useEffect(() => {
     let foundBplate, foundEpic, foundDrey, foundRende, foundBcafe, foundBBowl, foundDeNeve, foundFeast, foundStudy = false;
     setSortedNames(prevArray=>[]);
     let sortedNums = [bplateAverage, epicAverage, dreyAverage, rendeAverage, bcafeAverage, bBowlAverage, deNeveAverage, feastAverage, studyAverage].sort((a, b) => b - a);
-    
+    //sorts array of the dining halls by the average rating of the aspect to sort by
     for(let i = 0; i < sortedNums.length; i++){
       if(sortedNums[i] === bplateAverage && !foundBplate){
         foundBplate = true;
@@ -76,9 +86,9 @@ function DiningHalls() {
     }
   }, [sortedAspect]);
 
-  async function getAverages(props) {
+  //For a given dining hall, retrieve all reviews and calculate the average rating for the given aspect
+  async function getAverageRatingForAllDH(props) {
     const bplateAveragePromise = retrieveAverages("Bplate", props);
-    // console.log(retrieveAverages("JWCReviews", props));
     const epicAveragePromise = retrieveAverages("Epicuria", props);
     const dreyAveragePromise = retrieveAverages("Drey", props);
     const rendeAveragePromise = retrieveAverages("Rendezvous", props);
@@ -98,9 +108,26 @@ function DiningHalls() {
     setFeastAverage(await feastAveragePromise);
     setStudyAverage(await studyAveragePromise);
 
-    setSortedAspect(props)
+    setSortedAspect(props);
     setShowSortedResults(true);
   }
+
+  async function getAverageRatingForOneDH(props){
+    const healthAveragePromise = retrieveAverages(props, 1);
+    const tasteAveragePromise = retrieveAverages(props, 2);
+    const waitAveragePromise = retrieveAverages(props, 3);
+    const seatingAveragePromise = retrieveAverages(props, 4);
+
+    setHealthAverage(await healthAveragePromise);
+    setTasteAverage(await tasteAveragePromise);
+    setWaitAverage(await waitAveragePromise);
+    setSeatingAverage(await seatingAveragePromise);
+  }
+
+  useEffect(() => {
+      getAverageRatingForOneDH("Feast");
+  },[]);
+
 
   function displayRende(){
     return (
@@ -118,7 +145,6 @@ function DiningHalls() {
   function displayDeNeve(){
     return (
       <div>
-
       <h3>De Neve</h3>
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_DeNeve.png"  width="250" height="200" class="DeNeveDH"></img>
         <div class="ListOfReviews">
@@ -199,7 +225,18 @@ function DiningHalls() {
     return (
       <div>
         <h3>FEAST</h3>
+        <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_FEASTatRieber.png"  width="250" height="200" class="FEAST"></img>
+        <div class="rating-section">
+      <h4>Average Ratings:</h4>
+      <div class="rating">
+      <span className="blueText">Healthiness: </span>{healthAverage}/5 <br /><br />
+      <span className="blueText">Tastiness: </span>{tasteAverage}/5 <br /><br />
+      <span className="blueText">Wait Time: </span>{waitAverage}/5 <br /><br />
+      <span className="blueText">Seating: </span>{seatingAverage}/5 <br /><br />
+      </div>
+      </div>
+      </div>
         <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("Feast")}
@@ -212,7 +249,18 @@ function DiningHalls() {
     return (
       <div>
         <h3>The Drey</h3>
+        <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_TheDrey_1.png"  width="250" height="200" class="Drey"></img>
+        <div class="rating-section">
+        <h4>Average Ratings:</h4>
+        <div class="rating">
+      <span className="blueText">Healthiness: </span>{healthAverage}/5 <br /><br />
+      <span className="blueText">Tastiness: </span>{tasteAverage}/5 <br /><br />
+      <span className="blueText">Wait Time: </span>{waitAverage}/5 <br /><br />
+      <span className="blueText">Seating: </span>{seatingAverage}/5 <br /><br />
+      </div>
+      </div>
+      </div>
         <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("Drey")}
@@ -221,14 +269,13 @@ function DiningHalls() {
     );
   }
 
-
   function handleSearch() {
     retrieveMatchingResults(searchTerm).then((searchMatches) => {
       setMatchingResults(searchMatches);
     });
     setShowSearchResults(true);
   }
-    // Returned jsx to display content on page
+
     return (
         <html>
         <head>
@@ -242,10 +289,10 @@ function DiningHalls() {
            <b>Sort By:</b>
            <ul>
             {/* Buttons for sorting */}
-            <button type='button' className="btn btn-primary" onClick={() => { getAverages(1);}}>Healthiness{}</button>  
-            <button type='button' className="btn btn-primary" onClick={() => { getAverages(2);}}>Tastiness{}</button>  
-            <button type='button' className="btn btn-primary" onClick={() => { getAverages(3);}}>Wait Time{}</button>  
-            <button type='button' className="btn btn-primary" onClick={() => { getAverages(4);}}>Availability of Seating{}</button>
+            <button type='button' className="btn btn-primary" onClick={() => { getAverageRatingForAllDH(1);}}>Healthiness{}</button>  
+            <button type='button' className="btn btn-primary" onClick={() => { getAverageRatingForAllDH(2);}}>Tastiness{}</button>  
+            <button type='button' className="btn btn-primary" onClick={() => { getAverageRatingForAllDH(3);}}>Wait Time{}</button>  
+            <button type='button' className="btn btn-primary" onClick={() => { getAverageRatingForAllDH(4);}}>Availability of Seating{}</button>
             </ul> 
             <br></br>
 
@@ -481,8 +528,6 @@ const computeAverage = async(collectionName, category) => {
 
     // return the average rating 
     return totalRating / length;
-
-  
 }
 
 //take snapshot and read in data from backend 
@@ -500,10 +545,6 @@ const readInData = async (reviewCollectionRef) => {
 
     return readInReviews;
 }
-
-
-
-
 
 // copy this into every file where there are reviews for authentication, also need one import statement thats at the top
 let logged = false;
