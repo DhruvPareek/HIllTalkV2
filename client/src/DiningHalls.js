@@ -38,7 +38,6 @@ function DiningHalls() {
   const [showSortedResults, setShowSortedResults] = useState(false);
 
   //hooks for average rating functionality for each DH
-  //make an array of size 4 called feastAverages
   const [bplateAverageRatings, setBplateAverageRatings] = useState([]);
   const [bplateOverallAverage, setBplateOverallAverage] = useState(0);
   const [epicAverageRatings, setEpicAverageRatings] = useState([]);

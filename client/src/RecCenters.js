@@ -28,16 +28,21 @@ function RecCenters() {
   const [sortedNames, setSortedNames] = useState([]);
   const [sortedAspect, setSortedAspect] = useState("");
 
+  const [JWCAverageRatings, setJWCAverageRatings] = useState([]);
+  const [JWCOverallAverage, setJWCOverallAverage] = useState(0);
+  const [IMAverageRatings, setIMAverageRatings] = useState([]);
+  const [IMOverallAverage, setIMOverallAverage] = useState(0);
+  const [hitchAverageRatings, setHitchAverageRatings] = useState([]);
+  const [hitchOverallAverage, setHitchOverallAverage] = useState(0);
+  const [sunsetAverageRatings, setSunsetAverageRatings] = useState([]);
+  const [sunsetOverallAverage, setSunsetOverallAverage] = useState(0);
+  const [BFitAverageRatings, setBFitAverageRatings] = useState([]);
+  const [BFitOverallAverage, setBFitOverallAverage] = useState(0);
 
   useEffect(() => {
     let foundJWC, foundIM, foundHitch, foundSunset, foundBFit = false;
     setSortedNames(prevArray=>[]);
     let sortedNums = [JWCAverage, IMAverage, hitchAverage, sunsetAverage, BFitAverage].sort((a, b) => b - a);
-    console.log("JWC " + JWCAverage);
-    console.log("IM " + IMAverage);
-    console.log("hitch " + hitchAverage);
-    console.log("sunset " + sunsetAverage);
-    console.log("bfit " + BFitAverage);
     
     for(let i = 0; i < sortedNums.length; i++){
       if(sortedNums[i] === JWCAverage && !foundJWC){
@@ -61,7 +66,6 @@ function RecCenters() {
 
   async function getAverages(props) {
     const jwcAveragePromise = retrieveAverages("JWCReviews", props);
-    console.log(retrieveAverages("JWCReviews", props));
     const imAveragePromise = retrieveAverages("IMFieldReviews", props);
     const hitchAveragePromise = retrieveAverages("HitchBBReviews", props);
     const sunsetAveragePromise = retrieveAverages("SunsetRecReviews", props);
@@ -77,11 +81,62 @@ function RecCenters() {
     setShowSortedResults(true);
   }
 
+  async function getRatingsForOneRC(props){
+    const maintenanceAveragePromise = retrieveAverages(props, 1);
+    const hoursAveragePromise = retrieveAverages(props, 2);
+    const spaceAveragePromise = retrieveAverages(props, 3);
+    const locationAveragePromise = retrieveAverages(props, 4);
+    const activityAveragePromise = retrieveAverages(props, 5);
+
+    const maintenanceAverage = await maintenanceAveragePromise;
+    const hoursAverage = await hoursAveragePromise;
+    const spaceAverage = await spaceAveragePromise;
+    const locationAverage = await locationAveragePromise;
+    const activityAverage = await activityAveragePromise;
+
+    if(props === "JWCReviews"){
+      setJWCAverageRatings([maintenanceAverage, hoursAverage, spaceAverage, locationAverage, activityAverage]);
+      setJWCOverallAverage((maintenanceAverage + hoursAverage + spaceAverage + locationAverage + activityAverage)/5);
+    }else if(props === "IMFieldReviews"){
+      setIMAverageRatings([maintenanceAverage, hoursAverage, spaceAverage, locationAverage, activityAverage]);
+      setIMOverallAverage((maintenanceAverage + hoursAverage + spaceAverage + locationAverage + activityAverage)/5);
+    }else if(props === "HitchBBReviews"){
+      setHitchAverageRatings([maintenanceAverage, hoursAverage, spaceAverage, locationAverage, activityAverage]);
+      setHitchOverallAverage((maintenanceAverage + hoursAverage + spaceAverage + locationAverage + activityAverage)/5);
+    }else if(props === "SunsetRecReviews"){
+      setSunsetAverageRatings([maintenanceAverage, hoursAverage, spaceAverage, locationAverage, activityAverage]);
+      setSunsetOverallAverage((maintenanceAverage + hoursAverage + spaceAverage + locationAverage + activityAverage)/5);
+    }else if(props === "BFITReviews"){
+      setBFitAverageRatings([maintenanceAverage, hoursAverage, spaceAverage, locationAverage, activityAverage]);
+      setBFitOverallAverage((maintenanceAverage + hoursAverage + spaceAverage + locationAverage + activityAverage)/5);
+    }
+  }
+
+  useEffect(() => {
+    getRatingsForOneRC("JWCReviews");
+    getRatingsForOneRC("IMFieldReviews");
+    getRatingsForOneRC("HitchBBReviews");
+    getRatingsForOneRC("SunsetRecReviews");
+    getRatingsForOneRC("BFITReviews");
+},[]);
+
   function displayJWC(){
     return (
       <div>
-                <h3>John Wooden Center</h3>
+        <h3>John Wooden Center</h3>
+        <div class="flex-container">
         <img src="https://pbs.twimg.com/media/CgMViMxUIAAIU-p.jpg:large"  width="250" height="200" class="JWC"></img>
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{JWCOverallAverage !== undefined ? JWCOverallAverage.toFixed(1) : JWCOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Facility Maintenance: </span>{JWCAverageRatings[0] !== undefined ? JWCAverageRatings[0].toFixed(1) : JWCAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Hours: </span>{JWCAverageRatings[1] !== undefined ? JWCAverageRatings[1].toFixed(1) : JWCAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Space: </span>{JWCAverageRatings[2] !== undefined ? JWCAverageRatings[2].toFixed(1) : JWCAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{JWCAverageRatings[3] !== undefined ? JWCAverageRatings[3].toFixed(1) : JWCAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Activity Level: </span>{JWCAverageRatings[4] !== undefined ? JWCAverageRatings[4].toFixed(1) : JWCAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
         <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("JWCReviews")}
@@ -94,7 +149,19 @@ function RecCenters() {
     return (
       <div>
       <h3>Bruin Fitness Center (Bfit)</h3>
+      <div class="flex-container">
       <img src="https://conferences.ucla.edu/wp-content/uploads/2019/09/bfit.jpg"  width="250" height="200" class="BFIT"></img>
+      <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{BFitOverallAverage !== undefined ? BFitOverallAverage.toFixed(1) : BFitOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Facility Maintenance: </span>{BFitAverageRatings[0] !== undefined ? BFitAverageRatings[0].toFixed(1) : BFitAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Hours: </span>{BFitAverageRatings[1] !== undefined ? BFitAverageRatings[1].toFixed(1) : BFitAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Space: </span>{BFitAverageRatings[2] !== undefined ? BFitAverageRatings[2].toFixed(1) : BFitAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{BFitAverageRatings[3] !== undefined ? BFitAverageRatings[3].toFixed(1) : BFitAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Activity Level: </span>{BFitAverageRatings[4] !== undefined ? BFitAverageRatings[4].toFixed(1) : BFitAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
       <div class="ListOfReviews">
         <h3>Reviews:</h3><br></br>
       {ReviewDatabase("BFITReviews")}
@@ -107,8 +174,20 @@ function RecCenters() {
     return (
       <div>
         <h3>Sunset Canyon Recreation Center (Sunset Rec)</h3>
+        <div class="flex-container">
         <img src="https://recreation.ucla.edu/sites/default/files/styles/resize_3_2/public/2022-03/facilities_pools_600x400_1.jpg?itok=97qpWsPL"  width="250" height="200" class="SUNSETREC"></img>
-        <div class="ListOfReviews">
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{sunsetOverallAverage !== undefined ? sunsetOverallAverage.toFixed(1) : sunsetOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Facility Maintenance: </span>{sunsetAverageRatings[0] !== undefined ? sunsetAverageRatings[0].toFixed(1) : sunsetAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Hours: </span>{sunsetAverageRatings[1] !== undefined ? sunsetAverageRatings[1].toFixed(1) : sunsetAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Space: </span>{sunsetAverageRatings[2] !== undefined ? sunsetAverageRatings[2].toFixed(1) : sunsetAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{sunsetAverageRatings[3] !== undefined ? sunsetAverageRatings[3].toFixed(1) : sunsetAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Activity Level: </span>{sunsetAverageRatings[4] !== undefined ? sunsetAverageRatings[4].toFixed(1) : sunsetAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
+<div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("SunsetRecReviews")}
         </div>
@@ -120,8 +199,20 @@ function RecCenters() {
     return (
       <div>
         <h3>Hitch Basketball Courts</h3>
+        <div class="flex-container">
         <img src="https://i.pinimg.com/originals/97/d5/dc/97d5dc01f8ae8694c1e8c319ee3bbf00.png"  width="250" height="200" class="HITCHBB"></img>
-        <div class="ListOfReviews">
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{hitchOverallAverage !== undefined ? hitchOverallAverage.toFixed(1) : hitchOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Facility Maintenance: </span>{hitchAverageRatings[0] !== undefined ? hitchAverageRatings[0].toFixed(1) : hitchAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Hours: </span>{hitchAverageRatings[1] !== undefined ? hitchAverageRatings[1].toFixed(1) : hitchAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Space: </span>{hitchAverageRatings[2] !== undefined ? hitchAverageRatings[2].toFixed(1) : hitchAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{hitchAverageRatings[3] !== undefined ? hitchAverageRatings[3].toFixed(1) : hitchAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Activity Level: </span>{hitchAverageRatings[4] !== undefined ? hitchAverageRatings[4].toFixed(1) : hitchAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
+      <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("HitchBBReviews")}
         </div>
@@ -133,8 +224,20 @@ function RecCenters() {
     return (
       <div>
         <h3>Intramural Field</h3>
+        <div class="flex-container">
         <img src="https://recreation.ucla.edu/sites/default/files/styles/header_image/public/2022-03/facilities_IMfield_1156x420.jpg?itok=9NBBHMNs"  width="250" height="200" class="IMFIELD"></img>
-        <div class="ListOfReviews">
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{IMOverallAverage !== undefined ? IMOverallAverage.toFixed(1) : IMOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Facility Maintenance: </span>{IMAverageRatings[0] !== undefined ? IMAverageRatings[0].toFixed(1) : IMAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Hours: </span>{IMAverageRatings[1] !== undefined ? IMAverageRatings[1].toFixed(1) : IMAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Space: </span>{IMAverageRatings[2] !== undefined ? IMAverageRatings[2].toFixed(1) : IMAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{IMAverageRatings[3] !== undefined ? IMAverageRatings[3].toFixed(1) : IMAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Activity Level: </span>{IMAverageRatings[4] !== undefined ? IMAverageRatings[4].toFixed(1) : IMAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
+      <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("IMFieldReviews")}
         </div>
