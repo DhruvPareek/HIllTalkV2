@@ -38,10 +38,25 @@ function DiningHalls() {
   const [showSortedResults, setShowSortedResults] = useState(false);
 
   //hooks for average rating functionality for each DH
-  const [healthAverage, setHealthAverage] = useState(0);
-  const [tasteAverage, setTasteAverage] = useState(0);
-  const [waitAverage, setWaitAverage] =  useState(0);
-  const [seatingAverage, setSeatingAverage] = useState(0);
+  //make an array of size 4 called feastAverages
+  const [bplateAverageRatings, setBplateAverageRatings] = useState([]);
+  const [bplateOverallAverage, setBplateOverallAverage] = useState(0);
+  const [epicAverageRatings, setEpicAverageRatings] = useState([]);
+  const [epicOverallAverage, setEpicOverallAverage] = useState(0);
+  const [dreyAverageRatings, setDreyAverageRatings] = useState([]);
+  const [dreyOverallAverage, setDreyOverallAverage] = useState(0);
+  const [rendeAverageRatings, setRendeAverageRatings] = useState([]);
+  const [rendeOverallAverage, setRendeOverallAverage] = useState(0);
+  const [bcafeAverageRatings, setBcafeAverageRatings] = useState([]);
+  const [bcafeOverallAverage, setBcafeOverallAverage] = useState(0);
+  const [bBowlAverageRatings, setBBowlAverageRatings] = useState([]);
+  const [bBowlOverallAverage, setBBowlOverallAverage] = useState(0);
+  const [deNeveAverageRatings, setDeNeveAverageRatings] = useState([]);
+  const [deNeveOverallAverage, setDeNeveOverallAverage] = useState(0);
+  const [feastAverageRatings, setFeastAverageRatings] = useState([]);
+  const [feastOverallAverage, setFeastOverallAverage] = useState(0);
+  const [studyAverageRatings, setStudyAverageRatings] = useState([]);
+  const [studyOverallAverage, setStudyOverallAverage] = useState(0);
   //hooks for average rating functionality for each DH
 
   //SETS ORDER FOR SORTING BY SPECIFIC ELEMENT
@@ -112,20 +127,58 @@ function DiningHalls() {
     setShowSortedResults(true);
   }
 
-  async function getAverageRatingForOneDH(props){
+  async function getRatingsForOneDH(props){
     const healthAveragePromise = retrieveAverages(props, 1);
     const tasteAveragePromise = retrieveAverages(props, 2);
     const waitAveragePromise = retrieveAverages(props, 3);
     const seatingAveragePromise = retrieveAverages(props, 4);
 
-    setHealthAverage(await healthAveragePromise);
-    setTasteAverage(await tasteAveragePromise);
-    setWaitAverage(await waitAveragePromise);
-    setSeatingAverage(await seatingAveragePromise);
+    const healthAverage = await healthAveragePromise;
+    const tasteAverage = await tasteAveragePromise;
+    const waitAverage = await waitAveragePromise;
+    const seatingAverage = await seatingAveragePromise;
+
+    if(props === "Feast"){
+      setFeastAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
+      setFeastOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
+    }else if(props === "Bplate"){
+      setBplateAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
+      setBplateOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
+    }else if(props === "Epicuria"){
+      setEpicAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
+      setEpicOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
+    }else if(props === "Drey"){
+      setDreyAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
+      setDreyOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
+    }else if(props === "Rendezvous"){
+      setRendeAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
+      setRendeOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
+    }else if(props === "Bcafe"){
+      setBcafeAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
+      setBcafeOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
+    }else if(props === "BruinBowl"){
+      setBBowlAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
+      setBBowlOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
+    }else if(props === "De Neve"){
+      setDeNeveAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
+      setDeNeveOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
+    }else if(props === "Study"){
+      setStudyAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
+      setStudyOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
+    }
+
   }
 
   useEffect(() => {
-      getAverageRatingForOneDH("Feast");
+      getRatingsForOneDH("Feast");
+      getRatingsForOneDH("Bplate");
+      getRatingsForOneDH("Epicuria");
+      getRatingsForOneDH("Drey");
+      getRatingsForOneDH("Rendezvous");
+      getRatingsForOneDH("Bcafe");
+      getRatingsForOneDH("BruinBowl");
+      getRatingsForOneDH("De Neve");
+      getRatingsForOneDH("Study");
   },[]);
 
 
@@ -133,7 +186,18 @@ function DiningHalls() {
     return (
       <div>
         <h3>Rendezvous</h3>
+        <div class="flex-container">
         <img src="https://www.sustain.ucla.edu/wp-content/uploads/2013/05/RNDZ_3_web_960x450.jpg"  width="250" height="200" class="Rendezvous"></img>
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{rendeOverallAverage !== undefined ? rendeOverallAverage.toFixed(1) : rendeOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Healthiness: </span>{rendeAverageRatings[0] !== undefined ? rendeAverageRatings[0].toFixed(1) : rendeAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Tastiness: </span>{rendeAverageRatings[1] !== undefined ? rendeAverageRatings[1].toFixed(1) : rendeAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Wait Time: </span>{rendeAverageRatings[2] !== undefined ? rendeAverageRatings[2].toFixed(1) : rendeAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Seating: </span>{rendeAverageRatings[3] !== undefined ? rendeAverageRatings[3].toFixed(1) : rendeAverageRatings[3]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
         <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("Rendezvous")}
@@ -146,7 +210,18 @@ function DiningHalls() {
     return (
       <div>
       <h3>De Neve</h3>
+      <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_DeNeve.png"  width="250" height="200" class="DeNeveDH"></img>
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{deNeveOverallAverage !== undefined ? deNeveOverallAverage.toFixed(1) : deNeveOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Healthiness: </span>{deNeveAverageRatings[0] !== undefined ? deNeveAverageRatings[0].toFixed(1) : deNeveAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Tastiness: </span>{deNeveAverageRatings[1] !== undefined ? deNeveAverageRatings[1].toFixed(1) : deNeveAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Wait Time: </span>{deNeveAverageRatings[2] !== undefined ? deNeveAverageRatings[2].toFixed(1) : deNeveAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Seating: </span>{deNeveAverageRatings[3] !== undefined ? deNeveAverageRatings[3].toFixed(1) : deNeveAverageRatings[3]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
         <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("De Neve")}
@@ -160,7 +235,18 @@ function DiningHalls() {
     return (
       <div>
         <h3>Epicuria</h3>
+        <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_EpicuriaAckerman2.png"  width="250" height="200" class="Epicuria"></img>
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{epicOverallAverage !== undefined ? epicOverallAverage.toFixed(1) : epicOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Healthiness: </span>{epicAverageRatings[0] !== undefined ? epicAverageRatings[0].toFixed(1) : epicAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Tastiness: </span>{epicAverageRatings[1] !== undefined ? epicAverageRatings[1].toFixed(1) : epicAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Wait Time: </span>{epicAverageRatings[2] !== undefined ? epicAverageRatings[2].toFixed(1) : epicAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Seating: </span>{epicAverageRatings[3] !== undefined ? epicAverageRatings[3].toFixed(1) : epicAverageRatings[3]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
         <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("Epicuria")}
@@ -173,7 +259,18 @@ function DiningHalls() {
     return (
       <div>
         <h3>Bplate</h3>
+        <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_Bruin%20Plate.png"  width="250" height="200" class="Bplate"></img>
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{bplateOverallAverage !== undefined ? bplateOverallAverage.toFixed(1) : bplateOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Healthiness: </span>{bplateAverageRatings[0]!== undefined ? bplateAverageRatings[0].toFixed(1) : bplateAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Tastiness: </span>{bplateAverageRatings[1]!== undefined ? bplateAverageRatings[1].toFixed(1) : bplateAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Wait Time: </span>{bplateAverageRatings[2]!== undefined ? bplateAverageRatings[2].toFixed(1) : bplateAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Seating: </span>{bplateAverageRatings[3]!== undefined ? bplateAverageRatings[3].toFixed(1) : bplateAverageRatings[3]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
         <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("Bplate")}
@@ -186,7 +283,18 @@ function DiningHalls() {
     return (
       <div>
         <h3>The Study</h3>
+        <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_TheStudyatHedrick.png"  width="250" height="200" class="TheStudy"></img>
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{studyOverallAverage !== undefined ? studyOverallAverage.toFixed(1) : studyOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Healthiness: </span>{studyAverageRatings[0] !== undefined ? studyAverageRatings[0].toFixed(1) : studyAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Tastiness: </span>{studyAverageRatings[1] !== undefined ? studyAverageRatings[1].toFixed(1) : studyAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Wait Time: </span>{studyAverageRatings[2] !== undefined ? studyAverageRatings[2].toFixed(1) : studyAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Seating: </span>{studyAverageRatings[3] !== undefined ? studyAverageRatings[3].toFixed(1) : studyAverageRatings[3]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
         <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("Study")}
@@ -199,7 +307,18 @@ function DiningHalls() {
     return (
       <div>
         <h3>Bruin Cafe</h3>
+        <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_Bruin%20Cafe.png"  width="250" height="200" class="BCafe"></img>
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{bcafeOverallAverage !== undefined ? bcafeOverallAverage.toFixed(1) : bcafeOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Healthiness: </span>{bcafeAverageRatings[0] !== undefined ? bcafeAverageRatings[0].toFixed(1) : bcafeAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Tastiness: </span>{bcafeAverageRatings[1] !== undefined ? bcafeAverageRatings[1].toFixed(1) : bcafeAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Wait Time: </span>{bcafeAverageRatings[2] !== undefined ? bcafeAverageRatings[2].toFixed(1) : bcafeAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Seating: </span>{bcafeAverageRatings[3] !== undefined ? bcafeAverageRatings[3].toFixed(1) : bcafeAverageRatings[3]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
         <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("Bcafe")}
@@ -212,7 +331,18 @@ function DiningHalls() {
     return (
       <div>
         <h3>Bruin Bowl</h3>
+        <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_Bruin%20Bowl.png"  width="250" height="200" class="BruinBowl"></img>
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{bBowlOverallAverage !== undefined ? bBowlOverallAverage.toFixed(1) : bBowlOverallAverage}/5</p>
+        <div class="rating">
+      <span className="blueText">Healthiness: </span>{bBowlAverageRatings[0]!== undefined ? bBowlAverageRatings[0].toFixed(1) : bBowlAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Tastiness: </span>{bBowlAverageRatings[1]!== undefined ? bBowlAverageRatings[1].toFixed(1) : bBowlAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Wait Time: </span>{bBowlAverageRatings[2]!== undefined ? bBowlAverageRatings[2].toFixed(1) : bBowlAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Seating: </span>{bBowlAverageRatings[3]!== undefined ? bBowlAverageRatings[3].toFixed(1) : bBowlAverageRatings[3]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
         <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("BruinBowl")}
@@ -228,12 +358,12 @@ function DiningHalls() {
         <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_FEASTatRieber.png"  width="250" height="200" class="FEAST"></img>
         <div class="rating-section">
-      <h4>Average Ratings:</h4>
+      <h4>Overall Rating:</h4> <p className="specialBlueText">{feastOverallAverage !== undefined ? feastOverallAverage.toFixed(1) : feastOverallAverage}/5</p>
       <div class="rating">
-      <span className="blueText">Healthiness: </span>{healthAverage}/5 <br /><br />
-      <span className="blueText">Tastiness: </span>{tasteAverage}/5 <br /><br />
-      <span className="blueText">Wait Time: </span>{waitAverage}/5 <br /><br />
-      <span className="blueText">Seating: </span>{seatingAverage}/5 <br /><br />
+      <span className="blueText">Healthiness: </span>{feastAverageRatings[0] !== undefined ? feastAverageRatings[0].toFixed(1) : feastAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Tastiness: </span>{feastAverageRatings[1] !== undefined ? feastAverageRatings[1].toFixed(1) : feastAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Wait Time: </span>{feastAverageRatings[2] !== undefined ? feastAverageRatings[2].toFixed(1) : feastAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Seating: </span>{feastAverageRatings[3] !== undefined ? feastAverageRatings[3].toFixed(1) : feastAverageRatings[3]}/5 <br /><br />
       </div>
       </div>
       </div>
@@ -252,12 +382,12 @@ function DiningHalls() {
         <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_TheDrey_1.png"  width="250" height="200" class="Drey"></img>
         <div class="rating-section">
-        <h4>Average Ratings:</h4>
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{dreyOverallAverage !== undefined ? dreyOverallAverage.toFixed(1) : dreyOverallAverage}/5</p>
         <div class="rating">
-      <span className="blueText">Healthiness: </span>{healthAverage}/5 <br /><br />
-      <span className="blueText">Tastiness: </span>{tasteAverage}/5 <br /><br />
-      <span className="blueText">Wait Time: </span>{waitAverage}/5 <br /><br />
-      <span className="blueText">Seating: </span>{seatingAverage}/5 <br /><br />
+        <span className="blueText">Healthiness: </span>{dreyAverageRatings[0] !== undefined ? dreyAverageRatings[0].toFixed(1) : dreyAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Tastiness: </span>{dreyAverageRatings[1] !== undefined ? dreyAverageRatings[1].toFixed(1) : dreyAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Wait Time: </span>{dreyAverageRatings[2] !== undefined ? dreyAverageRatings[2].toFixed(1) : dreyAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Seating: </span>{dreyAverageRatings[3] !== undefined ? dreyAverageRatings[3].toFixed(1) : dreyAverageRatings[3]}/5 <br /><br />
       </div>
       </div>
       </div>

@@ -479,12 +479,14 @@ h5{
     color:rgb(39, 116, 174);
   }
 
-  h4{
-    /*color:rgb(39, 116, 174);*/
-  }
-
   .blueText{
     color: rgb(39, 116, 174);
+  }
+
+  .specialBlueText{
+    color: rgb(17, 72, 114);
+    font-weight: bold;
+    font-size: 18px;
   }
 
   .blueBackground{
