@@ -32,13 +32,31 @@ function Dorms(){
   const [dykstra, setDykstra] = useState(0);
   const [hedrickHall, setHedrickHall] = useState(0);
   const [hitch, setHitch] = useState(0);
-  const [rieberHall, setRieberhall] = useState(0);
+  const [rieberHall, setRieberHall] = useState(0);
   const [rieberVista, setRieberVista] = useState(0);
 
   const [sortedAspect, setSortedAspect] = useState("");
   const [sortedNames, setSortedNames] = useState([]);
   const [showSortedResults, setShowSortedResults] = useState(false);
-  console.log(sortedAspect);
+
+  const [centennialAverageRatings, setCentennialAverageRatings] = useState([]);
+  const [centennialOverallAverage, setCentennialOverallAverage] = useState(0);
+  const [deNeveAverageRatings, setDeNeveAverageRatings] = useState([]);
+  const [deNeveOverallAverage, setDeNeveOverallAverage] = useState(0);
+  const [hollyGardeniaAverageRatings, setHollyGardeniaAverageRatings] = useState([]);
+  const [hollyGardeniaOverallAverage, setHollyGardeniaOverallAverage] = useState(0);
+  const [heddySummitAverageRatings, setHeddySummitAverageRatings] = useState([]);
+  const [heddySummitOverallAverage, setHeddySummitOverallAverage] = useState(0);
+  const [dykstraAverageRatings, setDykstraAverageRatings] = useState([]);
+  const [dykstraOverallAverage, setDykstraOverallAverage] = useState(0);
+  const [hedrickHallAverageRatings, setHedrickHallAverageRatings] = useState([]);
+  const [hedrickHallOverallAverage, setHedrickHallOverallAverage] = useState(0);
+  const [hitchAverageRatings, setHitchAverageRatings] = useState([]);
+  const [hitchOverallAverage, setHitchOverallAverage] = useState(0);
+  const [rieberHallAverageRatings, setRieberHallAverageRatings] = useState([]);
+  const [rieberHallOverallAverage, setRieberHallOverallAverage] = useState(0);
+  const [rieberVistaAverageRatings, setRieberVistaAverageRatings] = useState([]);
+  const [rieberVistaOverallAverage, setRieberVistaOverallAverage] = useState(0);
 
   useEffect(() => {
     let foundCentennial, foundDeNeve, foundHolly, foundHeddySummit, foundDykstra, foundHeddyHall, foundHitch, foundRieberHall, foundRieberVista = false;
@@ -83,7 +101,6 @@ function Dorms(){
 
   async function getAverages(props) {
     const centennialPromise = retrieveAverages("Centennial", props);
-    // console.log(retrieveAverages("JWCReviews", props));
     const deNevePromise = retrieveAverages("DeNeve", props);
     const hollyGardeniaPromise = retrieveAverages("HollyGardenia", props);
     const hedrickSummitPromise = retrieveAverages("HeddySummit", props);
@@ -100,18 +117,85 @@ function Dorms(){
     setDykstra(await dykstraPromise);
     setHedrickHall(await hedrickHallPromise);
     setHitch(await hitchPromise);
-    setRieberhall(await rieberHallPromise);
+    setRieberHall(await rieberHallPromise);
     setRieberVista(await rieberVistaPromise);
 
     setSortedAspect(props)
     setShowSortedResults(true);
   }
 
+  async function getRatingsForOneDorm(props){
+    const cleanlinessAveragePromise = retrieveAverages(props, 1);
+    const noiseAveragePromise = retrieveAverages(props, 2);
+    const livingSpaceAveragePromise = retrieveAverages(props, 3);
+    const locationAveragePromise = retrieveAverages(props, 4);
+    const socialLifeAveragePromise = retrieveAverages(props, 5);
+
+    const cleanlinessAverage = await cleanlinessAveragePromise;
+    const noiseAverage = await noiseAveragePromise;
+    const livingSpaceAverage = await livingSpaceAveragePromise;
+    const locationAverage = await locationAveragePromise;
+    const socialLifeAverage = await socialLifeAveragePromise;
+
+    if(props === "Centennial"){
+      setCentennialAverageRatings([cleanlinessAverage, noiseAverage, livingSpaceAverage, locationAverage, socialLifeAverage]);
+      setCentennialOverallAverage((cleanlinessAverage + noiseAverage + livingSpaceAverage + locationAverage + socialLifeAverage)/5);
+    }else if(props === "DeNeve"){
+      setDeNeveAverageRatings([cleanlinessAverage, noiseAverage, livingSpaceAverage, locationAverage, socialLifeAverage]);
+      setDeNeveOverallAverage((cleanlinessAverage + noiseAverage + livingSpaceAverage + locationAverage + socialLifeAverage)/5);
+    }else if(props === "HollyGardenia"){
+      setHollyGardeniaAverageRatings([cleanlinessAverage, noiseAverage, livingSpaceAverage, locationAverage, socialLifeAverage]);
+      setHollyGardeniaOverallAverage((cleanlinessAverage + noiseAverage + livingSpaceAverage + locationAverage + socialLifeAverage)/5);
+    }else if(props === "HeddySummit"){
+      setHeddySummitAverageRatings([cleanlinessAverage, noiseAverage, livingSpaceAverage, locationAverage, socialLifeAverage]);
+      setHeddySummitOverallAverage((cleanlinessAverage + noiseAverage + livingSpaceAverage + locationAverage + socialLifeAverage)/5);
+    }else if(props === "Dykstra"){
+      setDykstraAverageRatings([cleanlinessAverage, noiseAverage, livingSpaceAverage, locationAverage, socialLifeAverage]);
+      setDykstraOverallAverage((cleanlinessAverage + noiseAverage + livingSpaceAverage + locationAverage + socialLifeAverage)/5);
+    }else if(props === "Hedrick"){
+      setHedrickHallAverageRatings([cleanlinessAverage, noiseAverage, livingSpaceAverage, locationAverage, socialLifeAverage]);
+      setHedrickHallOverallAverage((cleanlinessAverage + noiseAverage + livingSpaceAverage + locationAverage + socialLifeAverage)/5);
+    }else if(props === "Hitch"){
+      setHitchAverageRatings([cleanlinessAverage, noiseAverage, livingSpaceAverage, locationAverage, socialLifeAverage]);
+      setHitchOverallAverage((cleanlinessAverage + noiseAverage + livingSpaceAverage + locationAverage + socialLifeAverage)/5);
+    }else if(props === "RieberHall"){
+      setRieberHallAverageRatings([cleanlinessAverage, noiseAverage, livingSpaceAverage, locationAverage, socialLifeAverage]);
+      setRieberHallOverallAverage((cleanlinessAverage + noiseAverage + livingSpaceAverage + locationAverage + socialLifeAverage)/5);
+    }else if(props === "RieberVista"){
+      setRieberVistaAverageRatings([cleanlinessAverage, noiseAverage, livingSpaceAverage, locationAverage, socialLifeAverage]);
+      setRieberVistaOverallAverage((cleanlinessAverage + noiseAverage + livingSpaceAverage + locationAverage + socialLifeAverage)/5);
+    }
+  }
+
+  useEffect(() => {
+    getRatingsForOneDorm("Centennial");
+    getRatingsForOneDorm("DeNeve");
+    getRatingsForOneDorm("HollyGardenia");
+    getRatingsForOneDorm("HeddySummit");
+    getRatingsForOneDorm("Dykstra");
+    getRatingsForOneDorm("Hedrick");
+    getRatingsForOneDorm("Hitch");
+    getRatingsForOneDorm("RieberHall");
+    getRatingsForOneDorm("RieberVista");
+  },[]);
+
   function displayHeddySummit(){
     return (
       <div>
         <h3>Hedrick Summit</h3>
+        <div class="flex-container">
         <img src="https://s3-media0.fl.yelpcdn.com/bphoto/R7x3cuexqtbDRpbZKK405w/348s.jpg"  width="250" height="200" class="HSummit"></img>
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{heddySummitOverallAverage !== undefined ? heddySummitOverallAverage.toFixed(1) : heddySummitOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Cleanliness: </span>{heddySummitAverageRatings[0] !== undefined ? heddySummitAverageRatings[0].toFixed(1) : heddySummitAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Noise: </span>{heddySummitAverageRatings[1] !== undefined ? heddySummitAverageRatings[1].toFixed(1) : heddySummitAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Living Space: </span>{heddySummitAverageRatings[2] !== undefined ? heddySummitAverageRatings[2].toFixed(1) : heddySummitAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{heddySummitAverageRatings[3] !== undefined ? heddySummitAverageRatings[3].toFixed(1) : heddySummitAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Social Life: </span>{heddySummitAverageRatings[4] !== undefined ? heddySummitAverageRatings[4].toFixed(1) : heddySummitAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
         <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("HeddySummit")}
@@ -124,8 +208,20 @@ function Dorms(){
     return (
       <div>
         <h3>Hitch Suites</h3>
+        <div class="flex-container">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ_zvnYnhBUwc_tFS-fniDWToVlSA_BgtF6g&usqp=CAU"  width="250" height="220" class="HitchSuitesPics"></img>
-        <div class="ListOfReviews">
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{hitchOverallAverage !== undefined ? hitchOverallAverage.toFixed(1) : hitchOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Cleanliness: </span>{hitchAverageRatings[0] !== undefined ? hitchAverageRatings[0].toFixed(1) : hitchAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Noise: </span>{hitchAverageRatings[1] !== undefined ? hitchAverageRatings[1].toFixed(1) : hitchAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Living Space: </span>{hitchAverageRatings[2] !== undefined ? hitchAverageRatings[2].toFixed(1) : hitchAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{hitchAverageRatings[3] !== undefined ? hitchAverageRatings[3].toFixed(1) : hitchAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Social Life: </span>{hitchAverageRatings[4] !== undefined ? hitchAverageRatings[4].toFixed(1) : hitchAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
+      <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("Hitch")}
         </div>
@@ -138,7 +234,19 @@ function Dorms(){
     return (
       <div>
         <h3>De Neve Acacia, Birch, Cedar, Dogwood, Evergreen, Fir</h3>
+        <div class="flex-container">
       <img src="https://fastly.4sqi.net/img/general/600x600/6826866_k4W8jsn53GD_Y6CHMaGW5AlGywjPaUPbG_8YXquH-5U.jpg"  width="250" height="200" class="DeNeveDorms"></img>
+      <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{deNeveOverallAverage !== undefined ? deNeveOverallAverage.toFixed(1) : deNeveOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Cleanliness: </span>{deNeveAverageRatings[0] !== undefined ? deNeveAverageRatings[0].toFixed(1) : deNeveAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Noise: </span>{deNeveAverageRatings[1] !== undefined ? deNeveAverageRatings[1].toFixed(1) : deNeveAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Living Space: </span>{deNeveAverageRatings[2] !== undefined ? deNeveAverageRatings[2].toFixed(1) : deNeveAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{deNeveAverageRatings[3] !== undefined ? deNeveAverageRatings[3].toFixed(1) : deNeveAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Social Life: </span>{deNeveAverageRatings[4] !== undefined ? deNeveAverageRatings[4].toFixed(1) : deNeveAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
       <div class="ListOfReviews">
         <h3>Reviews:</h3><br></br>
       {ReviewDatabase("DeNeve")}
@@ -151,8 +259,20 @@ function Dorms(){
     return (
       <div>
         <h3>Centennial/Olympic</h3>
+        <div class="flex-container">
         <img src="https://s3.amazonaws.com/cms.ipressroom.com/173/files/20218/614102382cfac27232f4ea45_Olympic+and+Centennial+Hall_5DM47510_Ext2/Olympic+and+Centennial+Hall_5DM47510_Ext2_hero.jpg"  width="250" height="200" class="CentennialOlympic"></img>
-        <div class="ListOfReviews">
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{centennialOverallAverage !== undefined ? centennialOverallAverage.toFixed(1) : centennialOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Cleanliness: </span>{centennialAverageRatings[0] !== undefined ? centennialAverageRatings[0].toFixed(1) : centennialAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Noise: </span>{centennialAverageRatings[1] !== undefined ? centennialAverageRatings[1].toFixed(1) : centennialAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Living Space: </span>{centennialAverageRatings[2] !== undefined ? centennialAverageRatings[2].toFixed(1) : centennialAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{centennialAverageRatings[3] !== undefined ? centennialAverageRatings[3].toFixed(1) : centennialAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Social Life: </span>{centennialAverageRatings[4] !== undefined ? centennialAverageRatings[4].toFixed(1) : centennialAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
+      <div class="ListOfReviews">
           <h3>Reviews:</h3><br /><br />
         {ReviewDatabase("Centennial")}
         </div>
@@ -164,8 +284,20 @@ function Dorms(){
     return (
       <div>
         <h3>Rieber Terrace/Vista</h3>
+        <div class="flex-container">
         <img src="https://conferences.ucla.edu/wp-content/uploads/2019/01/Summer_PlazaRooms_RieberVista.jpg"  width="250" height="200" class="RieberTerraceVista"></img>
-        <div class="ListOfReviews">
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{rieberVistaOverallAverage !== undefined ? rieberVistaOverallAverage.toFixed(1) : rieberVistaOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Cleanliness: </span>{rieberVistaAverageRatings[0] !== undefined ? rieberVistaAverageRatings[0].toFixed(1) : rieberVistaAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Noise: </span>{rieberVistaAverageRatings[1] !== undefined ? rieberVistaAverageRatings[1].toFixed(1) : rieberVistaAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Living Space: </span>{rieberVistaAverageRatings[2] !== undefined ? rieberVistaAverageRatings[2].toFixed(1) : rieberVistaAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{rieberVistaAverageRatings[3] !== undefined ? rieberVistaAverageRatings[3].toFixed(1) : rieberVistaAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Social Life: </span>{rieberVistaAverageRatings[4] !== undefined ? rieberVistaAverageRatings[4].toFixed(1) : rieberVistaAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
+      <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("RieberVista")}
       </div>
@@ -177,8 +309,20 @@ function Dorms(){
     return (
       <div>
         <h3>Dykstra</h3>
+        <div class="flex-container">
         <img src="https://www.saifulbouquet.com/wp-content/uploads/2020/04/47097_web_ns_2_17_dykstramemories_picco.jpg" width="250" height="200" class="Dykstra"></img>
-        <div class="ListOfReviews">
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{dykstraOverallAverage !== undefined ? dykstraOverallAverage.toFixed(1) : dykstraOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Cleanliness: </span>{dykstraAverageRatings[0] !== undefined ? dykstraAverageRatings[0].toFixed(1) : dykstraAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Noise: </span>{dykstraAverageRatings[1] !== undefined ? dykstraAverageRatings[1].toFixed(1) : dykstraAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Living Space: </span>{dykstraAverageRatings[2] !== undefined ? dykstraAverageRatings[2].toFixed(1) : dykstraAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{dykstraAverageRatings[3] !== undefined ? dykstraAverageRatings[3].toFixed(1) : dykstraAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Social Life: </span>{dykstraAverageRatings[4] !== undefined ? dykstraAverageRatings[4].toFixed(1) : dykstraAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
+      <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("Dykstra")}
         </div>
@@ -190,8 +334,20 @@ function Dorms(){
     return (
       <div>
         <h3>Hedrick Hall</h3>
+        <div class="flex-container">
         <img src="https://humansofuniversity.com/wp-content/uploads/2022/05/2b0fbb098d13dd26587a5841292cd4aa-1024x768.jpg" width="250" height="200" class="HedrickPic"></img>
-        <div class="ListOfReviews">
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{hedrickHallOverallAverage !== undefined ? hedrickHallOverallAverage.toFixed(1) : hedrickHallOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Cleanliness: </span>{hedrickHallAverageRatings[0] !== undefined ? hedrickHallAverageRatings[0].toFixed(1) : hedrickHallAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Noise: </span>{hedrickHallAverageRatings[1] !== undefined ? hedrickHallAverageRatings[1].toFixed(1) : hedrickHallAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Living Space: </span>{hedrickHallAverageRatings[2] !== undefined ? hedrickHallAverageRatings[2].toFixed(1) : hedrickHallAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{hedrickHallAverageRatings[3] !== undefined ? hedrickHallAverageRatings[3].toFixed(1) : hedrickHallAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Social Life: </span>{hedrickHallAverageRatings[4] !== undefined ? hedrickHallAverageRatings[4].toFixed(1) : hedrickHallAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
+      <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("Hedrick")}
       </div>
@@ -203,7 +359,19 @@ function Dorms(){
     return (
       <div>
         <h3>Rieber Hall</h3>
+        <div class="flex-container">
       <img src="https://www.sgvtribune.com/wp-content/uploads/2022/03/LDN-Z-UCLA-DORMS.jpg?w=620"  width="250" height="230" class="rieberHall"></img>
+      <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{rieberHallOverallAverage !== undefined ? rieberHallOverallAverage.toFixed(1) : rieberHallOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Cleanliness: </span>{rieberHallAverageRatings[0] !== undefined ? rieberHallAverageRatings[0].toFixed(1) : rieberHallAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Noise: </span>{rieberHallAverageRatings[1] !== undefined ? rieberHallAverageRatings[1].toFixed(1) : rieberHallAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Living Space: </span>{rieberHallAverageRatings[2] !== undefined ? rieberHallAverageRatings[2].toFixed(1) : rieberHallAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{rieberHallAverageRatings[3] !== undefined ? rieberHallAverageRatings[3].toFixed(1) : rieberHallAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Social Life: </span>{rieberHallAverageRatings[4] !== undefined ? rieberHallAverageRatings[4].toFixed(1) : rieberHallAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
       <div class="ListOfReviews">
         <h3>Reviews:</h3><br></br>
       {ReviewDatabase("RieberHall")}
@@ -216,8 +384,20 @@ function Dorms(){
     return (
       <div>
       <h3>De Neve Gardenia/Holly</h3>
+      <div class="flex-container">
         <img src="https://humansofuniversity.com/wp-content/uploads/2022/05/67658661.jpg"  width="250" height="200" class="HollyGardenia"></img>
-        <div class="ListOfReviews">
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{hollyGardeniaOverallAverage !== undefined ? hollyGardeniaOverallAverage.toFixed(1) : hollyGardeniaOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Cleanliness: </span>{hollyGardeniaAverageRatings[0] !== undefined ? hollyGardeniaAverageRatings[0].toFixed(1) : hollyGardeniaAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Noise: </span>{hollyGardeniaAverageRatings[1] !== undefined ? hollyGardeniaAverageRatings[1].toFixed(1) : hollyGardeniaAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Living Space: </span>{hollyGardeniaAverageRatings[2] !== undefined ? hollyGardeniaAverageRatings[2].toFixed(1) : hollyGardeniaAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{hollyGardeniaAverageRatings[3] !== undefined ? hollyGardeniaAverageRatings[3].toFixed(1) : hollyGardeniaAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Social Life: </span>{hollyGardeniaAverageRatings[4] !== undefined ? hollyGardeniaAverageRatings[4].toFixed(1) : hollyGardeniaAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
+      <div class="ListOfReviews">
           <h3>Reviews:</h3><br></br>
         {ReviewDatabase("HollyGardenia")}
         </div>
