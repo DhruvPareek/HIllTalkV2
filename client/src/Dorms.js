@@ -821,7 +821,15 @@ function ReviewDatabase(string){
   useEffect(() => {
     const getReviews = async () => {
       const data = await getDocs(reviewCollectionRef);
-      setReview(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+
+      // Create an array of fetched reviews
+      const fetchedReviews = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
+    
+      // Sort the array by the difference between upvotes and downvotes, in descending order
+      fetchedReviews.sort((a, b) => (b.upvotes - b.downvotes) - (a.upvotes - a.downvotes));
+    
+      // Set the sorted array to the 'reviews' state
+      setReview(fetchedReviews);
     }
 
     getReviews()
@@ -929,25 +937,3 @@ function ReviewDatabase(string){
 }
 
 export default Dorms;
-
-
-// //ADDED March 9th
-// const sortReviews = async (string) => {
-
-  
-//   //orderBy() method specifies that the documents should be ordered by the value of the "rating" field in descending order
-
-//   const querySnapshot = await query(reviewCollectionRef, orderBy("upvotes", "desc")); // 'query' method returns a QuerySnapshot object that contains the results of the query
-//   console.log(typeof querySnapshot.docs);
-
-//   // if (querySnapshot.docs.length > 0) {
-//   //   const sortedReviews = querySnapshot.docs.map((doc) => doc.data()); //maps snapshots to data objects
-//   //   console.log("Sorted reviews:", sortedReviews);
-//   //   // Update the state of your component with the sorted reviews data
-//   // } else {
-//   //   console.warn("No reviews found.");
-//   // }
-
-//   // const sortedReviews = querySnapshot.docs.map((doc) => doc.data()); //maps snapshots to data objects
-//   // console.log(sortedReviews);
-//   // setReviews(sortedReviews); 

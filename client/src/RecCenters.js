@@ -590,29 +590,21 @@ function ReviewDatabase(string){
       }
     }
 
-    //sort reviews by popularity (within same collection)
-    const sortReview = async () => {
-      const querySnapshot = await getDocs(reviewCollectionRef);
-  
-      // create array of reviews from collection
-      const readInReviews = [];
-      
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        data.id = doc.id;
-        readInReviews.push(data);
-      });
-  
-      readInReviews.sort((a, b) => b.upvotes - a.upvotes); //sorts from most popular -> least 
-  
-      setReview(readInReviews);
-    }
-
     useEffect(() => {
       
       const getReviews = async () => {
+        // const data = await getDocs(reviewCollectionRef);
+        // setReview(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
         const data = await getDocs(reviewCollectionRef);
-        setReview(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+
+        // Create an array of fetched reviews
+        const fetchedReviews = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
+      
+        // Sort the array by the difference between upvotes and downvotes, in descending order
+        fetchedReviews.sort((a, b) => (b.upvotes - b.downvotes) - (a.upvotes - a.downvotes));
+      
+        // Set the sorted array to the 'reviews' state
+        setReview(fetchedReviews);
       }
   
       getReviews()
@@ -693,7 +685,6 @@ function ReviewDatabase(string){
         
         
         <button onClick={createReview} className="rev-button">Submit Review</button>
-        {/* <button onClick={sortReview} className="rev-button">Sort by Popularity</button>  */}
         </div>
         </div>
           {reviews.map((review) => {

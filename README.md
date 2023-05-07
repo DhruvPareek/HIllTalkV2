@@ -7,8 +7,6 @@ TODO:
 
 -Add university apartments
 
--default sort reviews from most least upvoted
-
 -show only top review, press a button to display rest of reviews
 
 -Add list of names of each facility at top of it corresponding page, when clicked, should take you to the facility's picture and reviews
