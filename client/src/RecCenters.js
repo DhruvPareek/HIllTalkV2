@@ -495,9 +495,11 @@ function ReviewDatabase(string){
     
     const [reducerValue, forceUpdate] = useReducer(x => x+1, 0);
 
+    const [showAllReviews, setShowAllReviews] = useState(false);
     const [reviews, setReview] = useState([]);
     const reviewCollectionRef = collection(db, string)
     const [user, setUser] = useState({});
+
     useEffect(() => {
       forceUpdate();
       onAuthStateChanged(auth, (currentUser) => {
@@ -609,7 +611,10 @@ function ReviewDatabase(string){
   
       getReviews()
     }, [reducerValue])
-    //forceUpdate();
+    
+    function displayAllReviews(){
+      setShowAllReviews(true);
+    }
 
     return (
       <div className="ReviewDatabase">
@@ -681,30 +686,33 @@ function ReviewDatabase(string){
         }}
         class="RatingBox"
         /></p>
-
-        
         
         <button onClick={createReview} className="rev-button">Submit Review</button>
         </div>
-        </div>
-          {reviews.map((review) => {
-            return (
+        </div>  
+        {/* DISPLAYING MOST POPULAR/AGREED UPON REVVIEW */}
+          {reviews.length > 0 ? (<div>
                 <div className="eachReview">
-                    <p><span className="blueText"><b>Review: </b></ span>{review.TextReview}</p>
-                    <p><span className="blueText"><b>Overall Rating: </b></span>{review.Overall}/5</p>
-                    <p><span className="blueText">Facility Maintenance:</span> {review.FacilityQRating}/5 <span className="blueText"> |  Hours:</span> {review.HoursRating}/5 <span className="blueText"> |  Space: </span>{review.SpaceRating}/5 <span className="blueText"> |  Location:</span> {review.LocationRating}/5 <span className="blueText"> |  Activity Level:</span> {review.BusinessRating}/5 </p>
-
-                     <button onClick={() => {upVote(review.id, review.upvotes, review.userEmail)}} class="thumbsup"><span role="img" aria-label="thumbs-up">
-        &#x1F44D;</span></button>{review.upvotes}
-                    <button onClick={() => {downVote(review.id, review.downvotes, review.userEmail)}} class="thumbsdown"><span role="img" aria-label="thumbs-down">
-        &#x1F44E;
-      </span></button>{review.downvotes}
-                    
+                    <p><span className="blueText"><b>Review: </b></ span>{reviews[0].TextReview}</p>
+                    <p><span className="blueText"><b>Overall Rating: </b></span>{reviews[0].Overall}/5</p>
+                    <p><span className="blueText">Facility Maintenance:</span> {reviews[0].FacilityQRating}/5 <span className="blueText"> |  Hours:</span> {reviews[0].HoursRating}/5 <span className="blueText"> |  Space: </span>{reviews[0].SpaceRating}/5 <span className="blueText"> |  Location:</span> {reviews[0].LocationRating}/5 <span className="blueText"> |  Activity Level:</span> {reviews[0].BusinessRating}/5 </p>
+                     <button onClick={() => {upVote(reviews[0].id, reviews[0].upvotes, reviews[0].userEmail)}} class="thumbsup"><span role="img" aria-label="thumbs-up">&#x1F44D;</span></button>{reviews[0].upvotes}
+                    <button onClick={() => {downVote(reviews[0].id, reviews[0].downvotes, reviews[0].userEmail)}} class="thumbsdown"><span role="img" aria-label="thumbs-down">&#x1F44E;</span></button>{reviews[0].downvotes}
                 </div>
-                );
-          })}
-      </div>
-    );
+                {/* BUTTON TO DISPLAY REST OF THE REVIEWS */}
+                {!showAllReviews && <button onClick={displayAllReviews} className="rev-button">More Reviews</button>}</div>) : (<div>No reviews available</div>)}
+                {showAllReviews ?  reviews.slice(1).map((review) => {
+          return (
+        <div className="eachReview">
+        <p><span className="blueText"><b>Review: </b></ span>{review.TextReview}</p>
+        <p><span className="blueText"><b>Overall Rating: </b></span>{review.Overall}/5</p>
+        <p><span className="blueText">Facility Maintenance:</span> {review.FacilityQRating}/5 <span className="blueText"> |  Hours:</span> {review.HoursRating}/5 <span className="blueText"> |  Space: </span>{review.SpaceRating}/5 <span className="blueText"> |  Location:</span> {review.LocationRating}/5 <span className="blueText"> |  Activity Level:</span> {review.BusinessRating}/5 </p>
+         <button onClick={() => {upVote(review.id, review.upvotes, review.userEmail)}} class="thumbsup"><span role="img" aria-label="thumbs-up">&#x1F44D;</span></button>{review.upvotes}
+        <button onClick={() => {downVote(review.id, review.downvotes, review.userEmail)}} class="thumbsdown"><span role="img" aria-label="thumbs-down">&#x1F44E;</span></button>{review.downvotes}
+        </div>
+          );
+        }) : null}
+    </div>);
   }
 
 
