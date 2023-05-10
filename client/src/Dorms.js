@@ -182,6 +182,7 @@ function Dorms(){
   function displayHeddySummit(){
     return (
       <div>
+        <br />
         <h3>Hedrick Summit</h3>
         <div class="flex-container">
         <img src="https://s3-media0.fl.yelpcdn.com/bphoto/R7x3cuexqtbDRpbZKK405w/348s.jpg"  width="250" height="200" class="HSummit"></img>
@@ -197,7 +198,7 @@ function Dorms(){
       </div>
       </div>
         <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+          <h3>Leave a Review:</h3>
         {ReviewDatabase("HeddySummit")}
         </div>
         </div>
@@ -207,6 +208,7 @@ function Dorms(){
   function displayHitch(){
     return (
       <div>
+        <br />
         <h3>Hitch Suites</h3>
         <div class="flex-container">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ_zvnYnhBUwc_tFS-fniDWToVlSA_BgtF6g&usqp=CAU"  width="250" height="220" class="HitchSuitesPics"></img>
@@ -222,7 +224,7 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+      <h3>Leave a Review:</h3>
         {ReviewDatabase("Hitch")}
         </div>
       </div>
@@ -233,6 +235,7 @@ function Dorms(){
   function displayDeNeve(){
     return (
       <div>
+        <br />
         <h3>De Neve Acacia, Birch, Cedar, Dogwood, Evergreen, Fir</h3>
         <div class="flex-container">
       <img src="https://fastly.4sqi.net/img/general/600x600/6826866_k4W8jsn53GD_Y6CHMaGW5AlGywjPaUPbG_8YXquH-5U.jpg"  width="250" height="200" class="DeNeveDorms"></img>
@@ -248,7 +251,7 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-        <h3>Reviews:</h3><br></br>
+      <h3>Leave a Review:</h3>
       {ReviewDatabase("DeNeve")}
       </div>
       </div>
@@ -258,6 +261,7 @@ function Dorms(){
   function displayCentennial(){
     return (
       <div>
+        <br />
         <h3>Centennial/Olympic</h3>
         <div class="flex-container">
         <img src="https://s3.amazonaws.com/cms.ipressroom.com/173/files/20218/614102382cfac27232f4ea45_Olympic+and+Centennial+Hall_5DM47510_Ext2/Olympic+and+Centennial+Hall_5DM47510_Ext2_hero.jpg"  width="250" height="200" class="CentennialOlympic"></img>
@@ -273,7 +277,7 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-          <h3>Reviews:</h3><br /><br />
+      <h3>Leave a Review:</h3>
         {ReviewDatabase("Centennial")}
         </div>
       </div>
@@ -283,6 +287,7 @@ function Dorms(){
   function displayRieberVista(){
     return (
       <div>
+        <br />
         <h3>Rieber Terrace/Vista</h3>
         <div class="flex-container">
         <img src="https://conferences.ucla.edu/wp-content/uploads/2019/01/Summer_PlazaRooms_RieberVista.jpg"  width="250" height="200" class="RieberTerraceVista"></img>
@@ -298,7 +303,7 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+      <h3>Leave a Review:</h3>
         {ReviewDatabase("RieberVista")}
       </div>
       </div>
@@ -308,6 +313,7 @@ function Dorms(){
   function displayDykstra(){
     return (
       <div>
+        <br />
         <h3>Dykstra</h3>
         <div class="flex-container">
         <img src="https://www.saifulbouquet.com/wp-content/uploads/2020/04/47097_web_ns_2_17_dykstramemories_picco.jpg" width="250" height="200" class="Dykstra"></img>
@@ -323,7 +329,7 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+      <h3>Leave a Review:</h3>
         {ReviewDatabase("Dykstra")}
         </div>
       </div>
@@ -333,6 +339,7 @@ function Dorms(){
   function displayHeddyHall(){
     return (
       <div>
+        <br />
         <h3>Hedrick Hall</h3>
         <div class="flex-container">
         <img src="https://humansofuniversity.com/wp-content/uploads/2022/05/2b0fbb098d13dd26587a5841292cd4aa-1024x768.jpg" width="250" height="200" class="HedrickPic"></img>
@@ -348,7 +355,7 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+      <h3>Leave a Review:</h3>
         {ReviewDatabase("Hedrick")}
       </div>
       </div>
@@ -358,6 +365,7 @@ function Dorms(){
   function displayRieberHall(){
     return (
       <div>
+        <br />
         <h3>Rieber Hall</h3>
         <div class="flex-container">
       <img src="https://www.sgvtribune.com/wp-content/uploads/2022/03/LDN-Z-UCLA-DORMS.jpg?w=620"  width="250" height="230" class="rieberHall"></img>
@@ -373,7 +381,7 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-        <h3>Reviews:</h3><br></br>
+      <h3>Leave a Review:</h3>
       {ReviewDatabase("RieberHall")}
       </div>
       </div>
@@ -383,6 +391,7 @@ function Dorms(){
   function displayHollyGardenia(){
     return (
       <div>
+        <br />
       <h3>De Neve Gardenia/Holly</h3>
       <div class="flex-container">
         <img src="https://humansofuniversity.com/wp-content/uploads/2022/05/67658661.jpg"  width="250" height="200" class="HollyGardenia"></img>
@@ -398,7 +407,7 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+      <h3>Leave a Review:</h3>
         {ReviewDatabase("HollyGardenia")}
         </div>
       </div>
@@ -695,6 +704,7 @@ function ReviewDatabase(string){
   const [LocationRating, setLocationRating] = useState(-1);  
   const [SocialLifeRating, setSocialLifeRating] = useState(-1);  
 
+  const [showAllReviews, setShowAllReviews] = useState(false);
   const [allReviews, setReview] = useState([]);
   const reviewCollectionRef = collection(db, string) //grabbing "CentennialReviews" collection and sets it equal to var
   const [reducerValue, forceUpdate] = useReducer(x => x+1, 0);
@@ -813,7 +823,6 @@ function ReviewDatabase(string){
     readInReviews.sort((a, b) => b.upvotes - a.upvotes); //sorts from most popular -> least 
 
     setReview(readInReviews);
-    console.log("ENTEREDEDEDED");
     forceUpdate();
   }
 
@@ -834,6 +843,14 @@ function ReviewDatabase(string){
 
     getReviews()
   }, [reducerValue])
+
+      function displayAllReviews(props){
+      if(props == 1){
+        setShowAllReviews(true);
+      }else{
+        setShowAllReviews(false);
+      }
+    }
 
   return (
     <div className="ReviewDatabase">
@@ -910,30 +927,32 @@ function ReviewDatabase(string){
     
     <button onClick={createReview} className="rev-button">Submit Review</button> 
 
-    {/* //<button onClick={sortReview} className="rev-button">Sort by Popularity</button>  */}
-
     </div>
     </div>
-
-
-        {allReviews.map((review) => {
+        {/* DISPLAYING MOST POPULAR/AGREED UPON REVVIEW */}
+        <h3>Top Review:</h3>
+          {allReviews.length > 0 ? (<div>
+            <div className="eachReview">
+              <p><b><span className="blueText">Review: </span></b>{allReviews[0].Review}</p> 
+              <p><b><span className="blueText">Overall Rating: </span> </b>{allReviews[0].Overall}/5</p>
+              <p><span className="blueText">Cleanliness:  </span>{allReviews[0].CleanlinessRating}/5 <span className="blueText">|  Noise:  </span>{allReviews[0].NoiseRating}/5 <span className="blueText"> |  Living Space:  </span> {allReviews[0].SpaceRating}/5 <span className="blueText"> |  Location: </span> {allReviews[0].LocationRating}/5 <span className="blueText"> |  Social Life:  </span>{allReviews[0].SocialLifeRating}/5</p>
+              <button onClick={() => {upVote(allReviews[0].id, allReviews[0].upvotes, allReviews[0].userEmail)}} class="thumbsup"><span role="img" aria-label="thumbs-up">&#x1F44D;</span></button>{allReviews[0].upvotes}
+              <button onClick={() => {downVote(allReviews[0].id, allReviews[0].downvotes, allReviews[0].userEmail)}}class="thumbsdown"><span role="img" aria-label="thumbs-down">&#x1F44E;</span></button>{allReviews[0].downvotes}
+              </div>
+                {/* BUTTON TO DISPLAY REST OF THE REVIEWS */}
+                {!showAllReviews && <button onClick={() => displayAllReviews(1)} className="rev-button">More Reviews</button>}
+                {showAllReviews && <button onClick={() => displayAllReviews(2)} className="rev-button">Less Reviews</button>}</div>) : (<div>No reviews available</div>)}
+                {showAllReviews ?  allReviews.slice(1).map((review) => {
           return (
             <div className="eachReview">
-              <p><b><span className="blueText">Review: </span></b>{review.Review}</p> 
-              <p><b><span className="blueText">Overall Rating: </span> </b>{review.Overall}/5</p>
-              <p><span className="blueText">Cleanliness:  </span>{review.CleanlinessRating}/5 <span className="blueText">|  Noise:  </span>{review.NoiseRating}/5 <span className="blueText"> |  Living Space:  </span> {review.SpaceRating}/5 <span className="blueText"> |  Location: </span> {review.LocationRating}/5 <span className="blueText"> |  Social Life:  </span>{review.SocialLifeRating}/5</p>
-              <button onClick={() => {upVote(review.id, review.upvotes, review.userEmail)}} class="thumbsup"><span role="img" aria-label="thumbs-up">
-        &#x1F44D;</span></button>{review.upvotes}
-              <button onClick={() => {downVote(review.id, review.downvotes, review.userEmail)}}class="thumbsdown"><span role="img" aria-label="thumbs-down">
-        &#x1F44E;
-      </span></button>{review.downvotes}
-              {console.log(string)}
-              {console.log(review.CleanlinessRating)}
-              </div>
-              );
-        })}
-    </div>
-  );
-}
+            <p><b><span className="blueText">Review: </span></b>{review.Review}</p> 
+            <p><b><span className="blueText">Overall Rating: </span> </b>{review.Overall}/5</p>
+            <p><span className="blueText">Cleanliness:  </span>{review.CleanlinessRating}/5 <span className="blueText">|  Noise:  </span>{review.NoiseRating}/5 <span className="blueText"> |  Living Space:  </span> {review.SpaceRating}/5 <span className="blueText"> |  Location: </span> {review.LocationRating}/5 <span className="blueText"> |  Social Life:  </span>{review.SocialLifeRating}/5</p>
+            <button onClick={() => {upVote(review.id, review.upvotes, review.userEmail)}} class="thumbsup"><span role="img" aria-label="thumbs-up">&#x1F44D;</span></button>{review.upvotes}
+            <button onClick={() => {downVote(review.id, review.downvotes, review.userEmail)}}class="thumbsdown"><span role="img" aria-label="thumbs-down">&#x1F44E;</span></button>{review.downvotes}
+            </div>);
+        }) : null}
+        </div>);
+      }
 
 export default Dorms;

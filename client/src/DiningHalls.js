@@ -184,6 +184,7 @@ function DiningHalls() {
   function displayRende(){
     return (
       <div>
+        <br />
         <h3>Rendezvous</h3>
         <div class="flex-container">
         <img src="https://www.sustain.ucla.edu/wp-content/uploads/2013/05/RNDZ_3_web_960x450.jpg"  width="250" height="200" class="Rendezvous"></img>
@@ -198,7 +199,7 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+        <h3>Leave a Review:</h3>
         {ReviewDatabase("Rendezvous")}
         </div>
         </div>
@@ -208,6 +209,7 @@ function DiningHalls() {
   function displayDeNeve(){
     return (
       <div>
+        <br />
       <h3>De Neve</h3>
       <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_DeNeve.png"  width="250" height="200" class="DeNeveDH"></img>
@@ -222,7 +224,7 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+        <h3>Leave a Review:</h3>
         {ReviewDatabase("De Neve")}
         </div>
       </div>
@@ -233,6 +235,7 @@ function DiningHalls() {
   function displayEpic(){
     return (
       <div>
+        <br />
         <h3>Epicuria</h3>
         <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_EpicuriaAckerman2.png"  width="250" height="200" class="Epicuria"></img>
@@ -247,7 +250,7 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+        <h3>Leave a Review:</h3>
         {ReviewDatabase("Epicuria")}
         </div>
       </div>
@@ -257,6 +260,7 @@ function DiningHalls() {
   function displayBplate(){
     return (
       <div>
+        <br />
         <h3>Bplate</h3>
         <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_Bruin%20Plate.png"  width="250" height="200" class="Bplate"></img>
@@ -271,7 +275,7 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+        <h3>Leave a Review:</h3>
         {ReviewDatabase("Bplate")}
         </div>
       </div>
@@ -281,6 +285,7 @@ function DiningHalls() {
   function displayStudy(){
     return (
       <div>
+        <br />
         <h3>The Study</h3>
         <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_TheStudyatHedrick.png"  width="250" height="200" class="TheStudy"></img>
@@ -295,7 +300,7 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+        <h3>Leave a Review:</h3>
         {ReviewDatabase("Study")}
         </div>
       </div>
@@ -305,6 +310,7 @@ function DiningHalls() {
   function displayBcafe(){
     return (
       <div>
+        <br />
         <h3>Bruin Cafe</h3>
         <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_Bruin%20Cafe.png"  width="250" height="200" class="BCafe"></img>
@@ -319,7 +325,7 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+        <h3>Leave a Review:</h3>
         {ReviewDatabase("Bcafe")}
         </div>
       </div>
@@ -329,6 +335,7 @@ function DiningHalls() {
   function displayBBowl(){
     return (
       <div>
+        <br />
         <h3>Bruin Bowl</h3>
         <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_Bruin%20Bowl.png"  width="250" height="200" class="BruinBowl"></img>
@@ -343,7 +350,7 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+        <h3>Leave a Review:</h3>
         {ReviewDatabase("BruinBowl")}
         </div>
       </div>
@@ -353,6 +360,7 @@ function DiningHalls() {
   function displayFeast(){
     return (
       <div>
+        <br />
         <h3>FEAST</h3>
         <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_FEASTatRieber.png"  width="250" height="200" class="FEAST"></img>
@@ -367,7 +375,7 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+        <h3>Leave a Review:</h3>
         {ReviewDatabase("Feast")}
         </div>
       </div>
@@ -377,6 +385,7 @@ function DiningHalls() {
   function displayDrey(){
     return (
       <div>
+        <br />
         <h3>The Drey</h3>
         <div class="flex-container">
         <img src="https://portal.housing.ucla.edu/sites/default/files/media/images/DiningWebsite_HeaderImages_TheDrey_1.png"  width="250" height="200" class="Drey"></img>
@@ -391,7 +400,7 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+        <h3>Leave a Review:</h3>
         {ReviewDatabase("Drey")}
         </div>
       </div>
@@ -680,12 +689,17 @@ let logged = false;
 function ReviewDatabase(string){
     const [Reviews, setReview] = useState([]); //hook instead of class
     const ReviewCollectionRef = collection(db, string) //gets the collection of reviews from the database and stores into var
+
     const [newReview, setNewReview] = useState("");
     const [newHealthRating, setNewHealthRating] = useState(-1);
     const [newQualityRating, setNewQualityRating] = useState(-1);
     const [newTimeRating, setNewTimeRating] = useState(-1);
     const [newSeatingRating, setNewSeatingRating] = useState(-1);
+
     const [reducerValue, forceUpdate] = useReducer(x => x+1, 0);
+
+    const [showAllReviews, setShowAllReviews] = useState(false);
+
 
     const [user, setUser] = useState({});
     useEffect(() => {
@@ -800,6 +814,14 @@ function ReviewDatabase(string){
       getReviews()  
     }, [reducerValue])
 
+    function displayAllReviews(props){
+      if(props == 1){
+        setShowAllReviews(true);
+      }else{
+        setShowAllReviews(false);
+      }
+    }
+
     // jsx that displays on the Dining Halls page
     return (
       <div className="ReviewDatabase">
@@ -858,15 +880,30 @@ function ReviewDatabase(string){
         class="RatingBox"
       /></p>
 
-      
       <button onClick={createReview} className="rev-button"> Submit Review</button>
 
       </div>
       </div>
-      {Reviews.map((review) => {
-        return (
+        {/* DISPLAYING MOST POPULAR/AGREED UPON REVVIEW */}
+        <h3>Top Review:</h3>
+          {Reviews.length > 0 ? (<div>
           <div className="eachReview">
 
+            {/* Display each rating and the reviews */}
+            <p><span className="RevTitles"><b>Review: </b></span>{Reviews[0].Review}</p>
+            <p><span className="RevTitles"><b>Overall Rating: </b></span>{Reviews[0].Overall}</p>
+            <p><span className="RevTitles">Healthiness: </span><span>{Reviews[0].HealthRating}/5</span><span className="RevTitles">  |  Tastiness: </span><span>{Reviews[0].QualityRating}/5</span><span className="RevTitles">  |  Wait Time: </span><span>{Reviews[0].TimeRating}/5</span><span className="RevTitles">  |  Availability of Seating: </span><span>{Reviews[0].SeatingRating}/5</span></p>
+
+            {/* Display upvotes */}
+            <button onClick={() => {upVote(Reviews[0].id, Reviews[0].upvotes, Reviews[0].userEmail)}} class="thumbsup"><span role="img" aria-label="thumbs-up">&#x1F44D;</span></button>{Reviews[0].upvotes}
+            <button onClick={() => {downVote(Reviews[0].id, Reviews[0].downvotes, Reviews[0].userEmail)}} class="thumbsdown"><span role="img" aria-label="thumbs-down">&#x1F44E;</span></button>{Reviews[0].downvotes}
+            </div>                
+            {/* BUTTON TO DISPLAY REST OF THE REVIEWS */}
+                {!showAllReviews && <button onClick={() => displayAllReviews(1)} className="rev-button">More Reviews</button>}
+                {showAllReviews && <button onClick={() => displayAllReviews(2)} className="rev-button">Less Reviews</button>}</div>) : (<div>No reviews available</div>)}
+                {showAllReviews ?  Reviews.slice(1).map((review) => {
+          return (
+            <div className="eachReview">
             {/* Display each rating and the reviews */}
             <p><span className="RevTitles"><b>Review: </b></span>{review.Review}</p>
             <p><span className="RevTitles"><b>Overall Rating: </b></span>{review.Overall}</p>
@@ -879,11 +916,8 @@ function ReviewDatabase(string){
         &#x1F44E;
       </span></button>{review.downvotes}      
                 </div>
-            
-                );
-          })}
-    </div>
-    );
+          );}): null}
+    </div>);
   }
   
 

@@ -123,6 +123,7 @@ function RecCenters() {
   function displayJWC(){
     return (
       <div>
+        <br />
         <h3>John Wooden Center</h3>
         <div class="flex-container">
         <img src="https://pbs.twimg.com/media/CgMViMxUIAAIU-p.jpg:large"  width="250" height="200" class="JWC"></img>
@@ -148,6 +149,7 @@ function RecCenters() {
   function displayBFit(){
     return (
       <div>
+        <br />
       <h3>Bruin Fitness Center (Bfit)</h3>
       <div class="flex-container">
       <img src="https://conferences.ucla.edu/wp-content/uploads/2019/09/bfit.jpg"  width="250" height="200" class="BFIT"></img>
@@ -173,6 +175,7 @@ function RecCenters() {
   function displaySunset(){
     return (
       <div>
+        <br />
         <h3>Sunset Canyon Recreation Center (Sunset Rec)</h3>
         <div class="flex-container">
         <img src="https://recreation.ucla.edu/sites/default/files/styles/resize_3_2/public/2022-03/facilities_pools_600x400_1.jpg?itok=97qpWsPL"  width="250" height="200" class="SUNSETREC"></img>
@@ -198,6 +201,7 @@ function RecCenters() {
   function displayHitch(){
     return (
       <div>
+          <br />
         <h3>Hitch Basketball Courts</h3>
         <div class="flex-container">
         <img src="https://i.pinimg.com/originals/97/d5/dc/97d5dc01f8ae8694c1e8c319ee3bbf00.png"  width="250" height="200" class="HITCHBB"></img>
@@ -716,8 +720,7 @@ function ReviewDatabase(string){
         <p><span className="blueText">Facility Maintenance:</span> {review.FacilityQRating}/5 <span className="blueText"> |  Hours:</span> {review.HoursRating}/5 <span className="blueText"> |  Space: </span>{review.SpaceRating}/5 <span className="blueText"> |  Location:</span> {review.LocationRating}/5 <span className="blueText"> |  Activity Level:</span> {review.BusinessRating}/5 </p>
          <button onClick={() => {upVote(review.id, review.upvotes, review.userEmail)}} class="thumbsup"><span role="img" aria-label="thumbs-up">&#x1F44D;</span></button>{review.upvotes}
         <button onClick={() => {downVote(review.id, review.downvotes, review.userEmail)}} class="thumbsdown"><span role="img" aria-label="thumbs-down">&#x1F44E;</span></button>{review.downvotes}
-        </div>
-          );
+        </div>);
         }) : null}
     </div>);
   }
