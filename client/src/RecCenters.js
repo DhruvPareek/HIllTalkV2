@@ -138,7 +138,7 @@ function RecCenters() {
       </div>
       </div>
         <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+          <h3>Leave a Review:</h3>
         {ReviewDatabase("JWCReviews")}
         </div>
         </div>
@@ -163,7 +163,7 @@ function RecCenters() {
       </div>
       </div>
       <div class="ListOfReviews">
-        <h3>Reviews:</h3><br></br>
+        <h3>Leave a Review:</h3>
       {ReviewDatabase("BFITReviews")}
       </div>
       </div>
@@ -188,7 +188,7 @@ function RecCenters() {
       </div>
       </div>
 <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+          <h3>Leave a Review:</h3>
         {ReviewDatabase("SunsetRecReviews")}
         </div>
       </div>
@@ -213,7 +213,7 @@ function RecCenters() {
       </div>
       </div>
       <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+          <h3>Leave a Review:</h3>
         {ReviewDatabase("HitchBBReviews")}
         </div>
       </div>
@@ -223,6 +223,7 @@ function RecCenters() {
   function displayIM(){
     return (
       <div>
+        <br />
         <h3>Intramural Field</h3>
         <div class="flex-container">
         <img src="https://recreation.ucla.edu/sites/default/files/styles/header_image/public/2022-03/facilities_IMfield_1156x420.jpg?itok=9NBBHMNs"  width="250" height="200" class="IMFIELD"></img>
@@ -238,7 +239,7 @@ function RecCenters() {
       </div>
       </div>
       <div class="ListOfReviews">
-          <h3>Reviews:</h3><br></br>
+          <h3>Leave a Review:</h3>
         {ReviewDatabase("IMFieldReviews")}
         </div>
       </div>
@@ -612,8 +613,12 @@ function ReviewDatabase(string){
       getReviews()
     }, [reducerValue])
     
-    function displayAllReviews(){
-      setShowAllReviews(true);
+    function displayAllReviews(props){
+      if(props == 1){
+        setShowAllReviews(true);
+      }else{
+        setShowAllReviews(false);
+      }
     }
 
     return (
@@ -691,6 +696,7 @@ function ReviewDatabase(string){
         </div>
         </div>  
         {/* DISPLAYING MOST POPULAR/AGREED UPON REVVIEW */}
+        <h3>Top Review:</h3>
           {reviews.length > 0 ? (<div>
                 <div className="eachReview">
                     <p><span className="blueText"><b>Review: </b></ span>{reviews[0].TextReview}</p>
@@ -700,7 +706,8 @@ function ReviewDatabase(string){
                     <button onClick={() => {downVote(reviews[0].id, reviews[0].downvotes, reviews[0].userEmail)}} class="thumbsdown"><span role="img" aria-label="thumbs-down">&#x1F44E;</span></button>{reviews[0].downvotes}
                 </div>
                 {/* BUTTON TO DISPLAY REST OF THE REVIEWS */}
-                {!showAllReviews && <button onClick={displayAllReviews} className="rev-button">More Reviews</button>}</div>) : (<div>No reviews available</div>)}
+                {!showAllReviews && <button onClick={() => displayAllReviews(1)} className="rev-button">More Reviews</button>}
+                {showAllReviews && <button onClick={() => displayAllReviews(2)} className="rev-button">Less Reviews</button>}</div>) : (<div>No reviews available</div>)}
                 {showAllReviews ?  reviews.slice(1).map((review) => {
           return (
         <div className="eachReview">
