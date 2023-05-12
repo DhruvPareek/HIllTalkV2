@@ -25,7 +25,7 @@ function DiningHalls() {
   const [bplateAverage, setBplateAverage] = useState(0);
   const [epicAverage, setEpicAverage] = useState(0);
   const [dreyAverage, setDreyAverage] = useState(0);
-  const [rendeAverage, setRendeAverage] = useState(0);
+  const [rendeWestAverage, setRendeWestAverage] = useState(0);
   const [bcafeAverage, setBcafeAverage] = useState(0);
   const [bBowlAverage, setBBowlAverage] = useState(0);
   const [deNeveAverage, setDeNeveAverage] = useState(0);
@@ -44,8 +44,8 @@ function DiningHalls() {
   const [epicOverallAverage, setEpicOverallAverage] = useState(0);
   const [dreyAverageRatings, setDreyAverageRatings] = useState([]);
   const [dreyOverallAverage, setDreyOverallAverage] = useState(0);
-  const [rendeAverageRatings, setRendeAverageRatings] = useState([]);
-  const [rendeOverallAverage, setRendeOverallAverage] = useState(0);
+  const [rendeWestAverageRatings, setRendeWestAverageRatings] = useState([]);
+  const [rendeWestOverallAverage, setRendeWestOverallAverage] = useState(0);
   const [bcafeAverageRatings, setBcafeAverageRatings] = useState([]);
   const [bcafeOverallAverage, setBcafeOverallAverage] = useState(0);
   const [bBowlAverageRatings, setBBowlAverageRatings] = useState([]);
@@ -60,9 +60,9 @@ function DiningHalls() {
 
   //SETS ORDER FOR SORTING BY SPECIFIC ELEMENT
   useEffect(() => {
-    let foundBplate, foundEpic, foundDrey, foundRende, foundBcafe, foundBBowl, foundDeNeve, foundFeast, foundStudy = false;
+    let foundBplate, foundEpic, foundDrey, foundRendeWest, foundBcafe, foundBBowl, foundDeNeve, foundFeast, foundStudy = false;
     setSortedNames(prevArray=>[]);
-    let sortedNums = [bplateAverage, epicAverage, dreyAverage, rendeAverage, bcafeAverage, bBowlAverage, deNeveAverage, feastAverage, studyAverage].sort((a, b) => b - a);
+    let sortedNums = [bplateAverage, epicAverage, dreyAverage, rendeWestAverage, bcafeAverage, bBowlAverage, deNeveAverage, feastAverage, studyAverage].sort((a, b) => b - a);
     //sorts array of the dining halls by the average rating of the aspect to sort by
     for(let i = 0; i < sortedNums.length; i++){
       if(sortedNums[i] === bplateAverage && !foundBplate){
@@ -74,9 +74,9 @@ function DiningHalls() {
       }else if(sortedNums[i] === dreyAverage && !foundDrey){
         foundDrey = true;
         setSortedNames(prevArray=>[...prevArray, displayDrey]);        
-      }else if(sortedNums[i] === rendeAverage && !foundRende){
-        foundRende = true;
-        setSortedNames(prevArray=>[...prevArray, displayRende]);  
+      }else if(sortedNums[i] === rendeWestAverage && !foundRendeWest){
+        foundRendeWest = true;
+        setSortedNames(prevArray=>[...prevArray, displayRendeWest]);  
       }else if(sortedNums[i] === bcafeAverage && !foundBcafe){
         foundBcafe = true;
         setSortedNames(prevArray=>[...prevArray, displayBcafe]); 
@@ -105,7 +105,7 @@ function DiningHalls() {
     const bplateAveragePromise = retrieveAverages("Bplate", props);
     const epicAveragePromise = retrieveAverages("Epicuria", props);
     const dreyAveragePromise = retrieveAverages("Drey", props);
-    const rendeAveragePromise = retrieveAverages("Rendezvous", props);
+    const rendeWestAveragePromise = retrieveAverages("RendeWest", props);
     const bcafeAveragePromise = retrieveAverages("Bcafe", props);
     const bBowlAveragePromise = retrieveAverages("BruinBowl", props);
     const deNeveAveragePromise = retrieveAverages("De Neve", props);
@@ -115,7 +115,7 @@ function DiningHalls() {
     setBplateAverage(await bplateAveragePromise);
     setEpicAverage(await epicAveragePromise);
     setDreyAverage(await dreyAveragePromise);
-    setRendeAverage(await rendeAveragePromise);
+    setRendeWestAverage(await rendeWestAveragePromise);
     setBcafeAverage(await bcafeAveragePromise);
     setBBowlAverage(await bBowlAveragePromise);
     setDeNeveAverage(await deNeveAveragePromise);
@@ -149,9 +149,9 @@ function DiningHalls() {
     }else if(props === "Drey"){
       setDreyAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
       setDreyOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
-    }else if(props === "Rendezvous"){
-      setRendeAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
-      setRendeOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
+    }else if(props === "RendeWest"){
+      setRendeWestAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
+      setRendeWestOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
     }else if(props === "Bcafe"){
       setBcafeAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
       setBcafeOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
@@ -173,7 +173,7 @@ function DiningHalls() {
       getRatingsForOneDH("Bplate");
       getRatingsForOneDH("Epicuria");
       getRatingsForOneDH("Drey");
-      getRatingsForOneDH("Rendezvous");
+      getRatingsForOneDH("RendeWest");
       getRatingsForOneDH("Bcafe");
       getRatingsForOneDH("BruinBowl");
       getRatingsForOneDH("De Neve");
@@ -181,26 +181,26 @@ function DiningHalls() {
   },[]);
 
 
-  function displayRende(){
+  function displayRendeWest(){
     return (
       <div>
         <br />
-        <h3>Rendezvous</h3>
+        <h3>Rendezvous West</h3>
         <div class="flex-container">
-        <img src="https://www.sustain.ucla.edu/wp-content/uploads/2013/05/RNDZ_3_web_960x450.jpg"  width="250" height="200" class="Rendezvous"></img>
+        <img src="https://www.sustain.ucla.edu/wp-content/uploads/2013/05/RNDZ_3_web_960x450.jpg"  width="250" height="200" class="RendeWest"></img>
         <div class="rating-section">
-        <h4>Overall Rating:</h4> <p className="specialBlueText">{rendeOverallAverage !== undefined ? rendeOverallAverage.toFixed(1) : rendeOverallAverage}/5</p>
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{rendeWestOverallAverage !== undefined ? rendeWestOverallAverage.toFixed(1) : rendeWestOverallAverage}/5</p>
         <div class="rating">
-        <span className="blueText">Healthiness: </span>{rendeAverageRatings[0] !== undefined ? rendeAverageRatings[0].toFixed(1) : rendeAverageRatings[0]}/5 <br /><br />
-      <span className="blueText">Tastiness: </span>{rendeAverageRatings[1] !== undefined ? rendeAverageRatings[1].toFixed(1) : rendeAverageRatings[1]}/5 <br /><br />
-      <span className="blueText">Wait Time: </span>{rendeAverageRatings[2] !== undefined ? rendeAverageRatings[2].toFixed(1) : rendeAverageRatings[2]}/5 <br /><br />
-      <span className="blueText">Seating: </span>{rendeAverageRatings[3] !== undefined ? rendeAverageRatings[3].toFixed(1) : rendeAverageRatings[3]}/5 <br /><br />
+        <span className="blueText">Healthiness: </span>{rendeWestAverageRatings[0] !== undefined ? rendeWestAverageRatings[0].toFixed(1) : rendeWestAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Tastiness: </span>{rendeWestAverageRatings[1] !== undefined ? rendeWestAverageRatings[1].toFixed(1) : rendeWestAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Wait Time: </span>{rendeWestAverageRatings[2] !== undefined ? rendeWestAverageRatings[2].toFixed(1) : rendeWestAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Seating: </span>{rendeWestAverageRatings[3] !== undefined ? rendeWestAverageRatings[3].toFixed(1) : rendeWestAverageRatings[3]}/5 <br /><br />
       </div>
       </div>
       </div>
         <div class="ListOfReviews">
         <h3>Leave a Review:</h3>
-        {ReviewDatabase("Rendezvous")}
+        {ReviewDatabase("RendeWest")}
         </div>
         </div>
     );
@@ -482,7 +482,7 @@ function DiningHalls() {
         <br />
     </div>) : 
       (<div>
-        {displayRende()}
+        {displayRendeWest()}
         <br />
         <br />
         {displayDeNeve()}
@@ -540,7 +540,7 @@ const readInSearchData = async (reviewCollectionRef) => {
 
 // findMatches function that reads in the reviews for each dining hall and stores the text they display
 const findMatches = async(userSearch) => {
-  const rendeCollectionRef = collection(db, "Rendezvous");
+  const rendeWestCollectionRef = collection(db, "RendeWest");
   const bCafeCollectionRef = collection(db, "Bcafe");
   const bPlateCollectionRef = collection(db, "Bplate");
   const bBowlCollectionRef = collection(db, "BruinBowl");
@@ -550,7 +550,7 @@ const findMatches = async(userSearch) => {
   const feastCollectionRef = collection(db, "Feast");
   const studyCollectionRef = collection(db, "Study");
 
-  const readInRendeReviews = await readInSearchData(rendeCollectionRef);
+  const readInRendeWestReviews = await readInSearchData(rendeWestCollectionRef);
   const readInBCafeReviews = await readInSearchData(bCafeCollectionRef);
   const readInBPlateReviews = await readInSearchData(bPlateCollectionRef);
   const readInBBowlReviews = await readInSearchData(bBowlCollectionRef);
@@ -564,8 +564,8 @@ const findMatches = async(userSearch) => {
   let allRevs = [];
 
   // Push matching reviews from each dining hall to the allRevs array
-  readInRendeReviews.forEach((review) => {
-    allRevs.push("Rendezvous: \"" + review.Review + "\""); // Push the dining hall followed by its matching review
+  readInRendeWestReviews.forEach((review) => {
+    allRevs.push("Rendezvous West: \"" + review.Review + "\""); // Push the dining hall followed by its matching review
     
   });
 
