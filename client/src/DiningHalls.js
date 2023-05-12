@@ -26,6 +26,7 @@ function DiningHalls() {
   const [epicAverage, setEpicAverage] = useState(0);
   const [dreyAverage, setDreyAverage] = useState(0);
   const [rendeWestAverage, setRendeWestAverage] = useState(0);
+  const [rendeEastAverage, setRendeEastAverage] = useState(0);
   const [bcafeAverage, setBcafeAverage] = useState(0);
   const [bBowlAverage, setBBowlAverage] = useState(0);
   const [deNeveAverage, setDeNeveAverage] = useState(0);
@@ -46,6 +47,8 @@ function DiningHalls() {
   const [dreyOverallAverage, setDreyOverallAverage] = useState(0);
   const [rendeWestAverageRatings, setRendeWestAverageRatings] = useState([]);
   const [rendeWestOverallAverage, setRendeWestOverallAverage] = useState(0);
+  const [rendeEastAverageRatings, setRendeEastAverageRatings] = useState([]);
+  const [rendeEastOverallAverage, setRendeEastOverallAverage] = useState(0);
   const [bcafeAverageRatings, setBcafeAverageRatings] = useState([]);
   const [bcafeOverallAverage, setBcafeOverallAverage] = useState(0);
   const [bBowlAverageRatings, setBBowlAverageRatings] = useState([]);
@@ -60,9 +63,9 @@ function DiningHalls() {
 
   //SETS ORDER FOR SORTING BY SPECIFIC ELEMENT
   useEffect(() => {
-    let foundBplate, foundEpic, foundDrey, foundRendeWest, foundBcafe, foundBBowl, foundDeNeve, foundFeast, foundStudy = false;
+    let foundBplate, foundEpic, foundDrey, foundRendeWest, foundRendeEast, foundBcafe, foundBBowl, foundDeNeve, foundFeast, foundStudy = false;
     setSortedNames(prevArray=>[]);
-    let sortedNums = [bplateAverage, epicAverage, dreyAverage, rendeWestAverage, bcafeAverage, bBowlAverage, deNeveAverage, feastAverage, studyAverage].sort((a, b) => b - a);
+    let sortedNums = [bplateAverage, epicAverage, dreyAverage, rendeWestAverage, rendeEastAverage, bcafeAverage, bBowlAverage, deNeveAverage, feastAverage, studyAverage].sort((a, b) => b - a);
     //sorts array of the dining halls by the average rating of the aspect to sort by
     for(let i = 0; i < sortedNums.length; i++){
       if(sortedNums[i] === bplateAverage && !foundBplate){
@@ -77,6 +80,9 @@ function DiningHalls() {
       }else if(sortedNums[i] === rendeWestAverage && !foundRendeWest){
         foundRendeWest = true;
         setSortedNames(prevArray=>[...prevArray, displayRendeWest]);  
+      }else if(sortedNums[i] === rendeEastAverage && !foundRendeEast){
+        foundRendeEast = true;
+        setSortedNames(prevArray=>[...prevArray, displayRendeEast]);  
       }else if(sortedNums[i] === bcafeAverage && !foundBcafe){
         foundBcafe = true;
         setSortedNames(prevArray=>[...prevArray, displayBcafe]); 
@@ -106,6 +112,7 @@ function DiningHalls() {
     const epicAveragePromise = retrieveAverages("Epicuria", props);
     const dreyAveragePromise = retrieveAverages("Drey", props);
     const rendeWestAveragePromise = retrieveAverages("RendeWest", props);
+    const rendeEastAveragePromise = retrieveAverages("RendeEast", props);
     const bcafeAveragePromise = retrieveAverages("Bcafe", props);
     const bBowlAveragePromise = retrieveAverages("BruinBowl", props);
     const deNeveAveragePromise = retrieveAverages("De Neve", props);
@@ -116,6 +123,7 @@ function DiningHalls() {
     setEpicAverage(await epicAveragePromise);
     setDreyAverage(await dreyAveragePromise);
     setRendeWestAverage(await rendeWestAveragePromise);
+    setRendeEastAverage(await rendeEastAveragePromise);
     setBcafeAverage(await bcafeAveragePromise);
     setBBowlAverage(await bBowlAveragePromise);
     setDeNeveAverage(await deNeveAveragePromise);
@@ -152,6 +160,9 @@ function DiningHalls() {
     }else if(props === "RendeWest"){
       setRendeWestAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
       setRendeWestOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
+    }else if(props === "RendeEast"){
+      setRendeEastAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
+      setRendeEastOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
     }else if(props === "Bcafe"){
       setBcafeAverageRatings([healthAverage, tasteAverage, waitAverage, seatingAverage]);
       setBcafeOverallAverage((healthAverage + tasteAverage + waitAverage + seatingAverage)/4);
@@ -174,12 +185,12 @@ function DiningHalls() {
       getRatingsForOneDH("Epicuria");
       getRatingsForOneDH("Drey");
       getRatingsForOneDH("RendeWest");
+      getRatingsForOneDH("RendeEast");
       getRatingsForOneDH("Bcafe");
       getRatingsForOneDH("BruinBowl");
       getRatingsForOneDH("De Neve");
       getRatingsForOneDH("Study");
   },[]);
-
 
   function displayRendeWest(){
     return (
@@ -201,6 +212,31 @@ function DiningHalls() {
         <div class="ListOfReviews">
         <h3>Leave a Review:</h3>
         {ReviewDatabase("RendeWest")}
+        </div>
+        </div>
+    );
+  }
+
+  function displayRendeEast(){
+    return (
+      <div>
+        <br />
+        <h3>Rendezvous East</h3>
+        <div class="flex-container">
+        <img src="https://www.sustain.ucla.edu/wp-content/uploads/2013/05/RNDZ_3_web_960x450.jpg"  width="250" height="200" class="RendeWest"></img>
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{rendeEastOverallAverage !== undefined ? rendeEastOverallAverage.toFixed(1) : rendeEastOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Healthiness: </span>{rendeEastAverageRatings[0] !== undefined ? rendeEastAverageRatings[0].toFixed(1) : rendeEastAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Tastiness: </span>{rendeEastAverageRatings[1] !== undefined ? rendeEastAverageRatings[1].toFixed(1) : rendeEastAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Wait Time: </span>{rendeEastAverageRatings[2] !== undefined ? rendeEastAverageRatings[2].toFixed(1) : rendeEastAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Seating: </span>{rendeEastAverageRatings[3] !== undefined ? rendeEastAverageRatings[3].toFixed(1) : rendeEastAverageRatings[3]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
+        <div class="ListOfReviews">
+        <h3>Leave a Review:</h3>
+        {ReviewDatabase("RendeEast")}
         </div>
         </div>
     );
@@ -480,9 +516,15 @@ function DiningHalls() {
         <br />
         {sortedNames[8]()}
         <br />
+        <br />
+        {sortedNames[9]()}
+        <br />
     </div>) : 
       (<div>
         {displayRendeWest()}
+        <br />
+        <br />
+        {displayRendeEast()}
         <br />
         <br />
         {displayDeNeve()}
@@ -541,6 +583,7 @@ const readInSearchData = async (reviewCollectionRef) => {
 // findMatches function that reads in the reviews for each dining hall and stores the text they display
 const findMatches = async(userSearch) => {
   const rendeWestCollectionRef = collection(db, "RendeWest");
+  const rendeEastCollectionRef = collection(db, "RendeEast");
   const bCafeCollectionRef = collection(db, "Bcafe");
   const bPlateCollectionRef = collection(db, "Bplate");
   const bBowlCollectionRef = collection(db, "BruinBowl");
@@ -551,6 +594,7 @@ const findMatches = async(userSearch) => {
   const studyCollectionRef = collection(db, "Study");
 
   const readInRendeWestReviews = await readInSearchData(rendeWestCollectionRef);
+  const readInRendeEastReviews = await readInSearchData(rendeEastCollectionRef);
   const readInBCafeReviews = await readInSearchData(bCafeCollectionRef);
   const readInBPlateReviews = await readInSearchData(bPlateCollectionRef);
   const readInBBowlReviews = await readInSearchData(bBowlCollectionRef);
@@ -566,6 +610,11 @@ const findMatches = async(userSearch) => {
   // Push matching reviews from each dining hall to the allRevs array
   readInRendeWestReviews.forEach((review) => {
     allRevs.push("Rendezvous West: \"" + review.Review + "\""); // Push the dining hall followed by its matching review
+    
+  });
+
+  readInRendeEastReviews.forEach((review) => {
+    allRevs.push("Rendezvous East: \"" + review.Review + "\""); // Push the dining hall followed by its matching review
     
   });
 

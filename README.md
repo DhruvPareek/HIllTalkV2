@@ -3,11 +3,15 @@ TODO:
 
 -Add saxon, sproul landing/cove, sunset, sproul hall to dorms
 
--Split rendezvous into west and east
-
 -Add university apartments
 
 -Add list of names of each facility at top of it corresponding page, when clicked, should take you to the facility's picture and reviews
+
+-Add time that each review was posted
+
+-Check if any email works
+
+-Make a "leave a review" a button that you press to display the stuff to leave a review
 
 HillTalk
 
