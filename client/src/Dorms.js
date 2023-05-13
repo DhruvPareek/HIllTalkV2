@@ -34,6 +34,10 @@ function Dorms(){
   const [hitch, setHitch] = useState(0);
   const [rieberHall, setRieberHall] = useState(0);
   const [rieberVista, setRieberVista] = useState(0);
+  const [sunsetVillage, setSunsetVillage] = useState(0);
+  const [sproulHall, setSproulHall] = useState(0);
+  const [coveLanding, setCoveLanding] = useState(0);
+  const [saxon, setSaxon] = useState(0);
 
   const [sortedAspect, setSortedAspect] = useState("");
   const [sortedNames, setSortedNames] = useState([]);
@@ -57,11 +61,19 @@ function Dorms(){
   const [rieberHallOverallAverage, setRieberHallOverallAverage] = useState(0);
   const [rieberVistaAverageRatings, setRieberVistaAverageRatings] = useState([]);
   const [rieberVistaOverallAverage, setRieberVistaOverallAverage] = useState(0);
+  const [sunsetVillageAverageRatings, setSunsetVillageAverageRatings] = useState([]);
+  const [sunsetVillageOverallAverage, setSunsetVillageOverallAverage] = useState(0);
+  const [sproulHallAverageRatings, setSproulHallAverageRatings] = useState([]);
+  const [sproulHallOverallAverage, setSproulHallOverallAverage] = useState(0);
+  const [coveLandingAverageRatings, setCoveLandingAverageRatings] = useState([]);
+  const [coveLandingOverallAverage, setCoveLandingOverallAverage] = useState(0);
+  const [saxonAverageRatings, setSaxonAverageRatings] = useState([]);
+  const [saxonOverallAverage, setSaxonOverallAverage] = useState(0);
 
   useEffect(() => {
-    let foundCentennial, foundDeNeve, foundHolly, foundHeddySummit, foundDykstra, foundHeddyHall, foundHitch, foundRieberHall, foundRieberVista = false;
+    let foundCentennial, foundDeNeve, foundHolly, foundHeddySummit, foundDykstra, foundHeddyHall, foundHitch, foundRieberHall, foundRieberVista, foundSunsetVillage, foundSproulHall, foundCoveLanding, foundSaxon = false;
     setSortedNames(prevArray=>[]);
-    let sortedNums = [centennial, deNeve, hollyGardenia, hedrickSummit, dykstra, hedrickHall, hitch, rieberHall, rieberVista].sort((a, b) => b - a);
+    let sortedNums = [centennial, deNeve, hollyGardenia, hedrickSummit, dykstra, hedrickHall, hitch, rieberHall, rieberVista, sunsetVillage, sproulHall, coveLanding, saxon].sort((a, b) => b - a);
     
     for(let i = 0; i < sortedNums.length; i++){
       if(sortedNums[i] === centennial && !foundCentennial){
@@ -95,6 +107,21 @@ function Dorms(){
       else if(sortedNums[i] === rieberVista && !foundRieberVista){
         foundRieberVista = true;
         setSortedNames(prevArray=>[...prevArray, displayRieberVista]); 
+      }else if(sortedNums[i] === sunsetVillage && !foundSunsetVillage){
+        foundSunsetVillage = true;
+        setSortedNames(prevArray=>[...prevArray, displaySunsetVillage]); 
+      }else if(sortedNums[i] === sunsetVillage && !foundSunsetVillage){
+        foundSunsetVillage = true;
+        setSortedNames(prevArray=>[...prevArray, displaySunsetVillage]); 
+      }else if(sortedNums[i] === sproulHall && !foundSproulHall){
+        foundSproulHall = true;
+        setSortedNames(prevArray=>[...prevArray, displaySproulHall]); 
+      }else if(sortedNums[i] === coveLanding && !foundCoveLanding){
+        foundCoveLanding = true;
+        setSortedNames(prevArray=>[...prevArray, displayCoveLanding]);
+      }else if(sortedNums[i] === saxon && !foundSaxon){
+        foundSaxon = true;
+        setSortedNames(prevArray=>[...prevArray, displaySaxon]);
       }
     }
   }, [sortedAspect]);
@@ -109,6 +136,10 @@ function Dorms(){
     const hitchPromise = retrieveAverages("Hitch", props);
     const rieberHallPromise = retrieveAverages("RieberHall", props);
     const rieberVistaPromise = retrieveAverages("RieberVista", props);
+    const sunsetVillagePromise = retrieveAverages("SunsetVillage", props);
+    const sproulHallPromise = retrieveAverages("SproulHall", props);
+    const coveLandingPromise = retrieveAverages("CoveLanding", props);
+    const saxonPromise = retrieveAverages("Saxon", props);
   
     setCentennial(await centennialPromise);
     setDeNeve(await deNevePromise);
@@ -119,6 +150,10 @@ function Dorms(){
     setHitch(await hitchPromise);
     setRieberHall(await rieberHallPromise);
     setRieberVista(await rieberVistaPromise);
+    setSunsetVillage(await sunsetVillagePromise);
+    setSproulHall(await sproulHallPromise);
+    setCoveLanding(await coveLandingPromise);
+    setSaxon(await saxonPromise);
 
     setSortedAspect(props)
     setShowSortedResults(true);
@@ -164,6 +199,18 @@ function Dorms(){
     }else if(props === "RieberVista"){
       setRieberVistaAverageRatings([cleanlinessAverage, noiseAverage, livingSpaceAverage, locationAverage, socialLifeAverage]);
       setRieberVistaOverallAverage((cleanlinessAverage + noiseAverage + livingSpaceAverage + locationAverage + socialLifeAverage)/5);
+    }else if(props === "SunsetVillage"){
+      setSunsetVillageAverageRatings([cleanlinessAverage, noiseAverage, livingSpaceAverage, locationAverage, socialLifeAverage]);
+      setSunsetVillageOverallAverage((cleanlinessAverage + noiseAverage + livingSpaceAverage + locationAverage + socialLifeAverage)/5);
+    }else if(props === "SproulHall"){
+      setSproulHallAverageRatings([cleanlinessAverage, noiseAverage, livingSpaceAverage, locationAverage, socialLifeAverage]);
+      setSproulHallOverallAverage((cleanlinessAverage + noiseAverage + livingSpaceAverage + locationAverage + socialLifeAverage)/5);
+    }else if(props === "CoveLanding"){
+      setCoveLandingAverageRatings([cleanlinessAverage, noiseAverage, livingSpaceAverage, locationAverage, socialLifeAverage]);
+      setCoveLandingOverallAverage((cleanlinessAverage + noiseAverage + livingSpaceAverage + locationAverage + socialLifeAverage)/5);
+    }else if(props === "Saxon"){
+      setSaxonAverageRatings([cleanlinessAverage, noiseAverage, livingSpaceAverage, locationAverage, socialLifeAverage]);
+      setSaxonOverallAverage((cleanlinessAverage + noiseAverage + livingSpaceAverage + locationAverage + socialLifeAverage)/5);
     }
   }
 
@@ -176,7 +223,11 @@ function Dorms(){
     getRatingsForOneDorm("Hedrick");
     getRatingsForOneDorm("Hitch");
     getRatingsForOneDorm("RieberHall");
-    getRatingsForOneDorm("RieberVista");
+    getRatingsForOneDorm("RieberVista");    
+    getRatingsForOneDorm("SunsetVillage");
+    getRatingsForOneDorm("SproulHall");
+    getRatingsForOneDorm("CoveLanding");
+    getRatingsForOneDorm("Saxon");
   },[]);
 
   function displayHeddySummit(){
@@ -414,6 +465,110 @@ function Dorms(){
     );
   }
 
+  function displaySunsetVillage(){
+    return (
+      <div>
+        <br />
+      <h3>Sunset Village</h3>
+      <div class="flex-container">
+        <img src="https://s3.amazonaws.com/cms.ipressroom.com/173/files/20222/622fa6422cfac27232a8f4f9_UCLA+Courtside+Jesse+Herring+UCLA/UCLA+Courtside+Jesse+Herring+UCLA_60cf4aea-3abd-4931-b72d-5d941d22256c-prv.jpg"  width="360" height="240" class="SunsetVillage"></img>
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{sunsetVillageOverallAverage !== undefined ? sunsetVillageOverallAverage.toFixed(1) : sunsetVillageOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Cleanliness: </span>{sunsetVillageAverageRatings[0] !== undefined ? sunsetVillageAverageRatings[0].toFixed(1) : sunsetVillageAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Noise: </span>{sunsetVillageAverageRatings[1] !== undefined ? sunsetVillageAverageRatings[1].toFixed(1) : sunsetVillageAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Living Space: </span>{sunsetVillageAverageRatings[2] !== undefined ? sunsetVillageAverageRatings[2].toFixed(1) : sunsetVillageAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{sunsetVillageAverageRatings[3] !== undefined ? sunsetVillageAverageRatings[3].toFixed(1) : sunsetVillageAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Social Life: </span>{sunsetVillageAverageRatings[4] !== undefined ? sunsetVillageAverageRatings[4].toFixed(1) : sunsetVillageAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
+      <div class="ListOfReviews">
+      <h3>Leave a Review:</h3>
+        {ReviewDatabase("SunsetVillage")}
+        </div>
+      </div>
+    );
+  }
+
+  function displaySproulHall(){
+    return (
+      <div>
+        <br />
+      <h3>Sproul Hall</h3>
+      <div class="flex-container">
+        <img src="https://images.squarespace-cdn.com/content/v1/53bf0a2ce4b07a8d276e0211/1405555359901-0QUQW028NQ0JXWET059X/UCLA+Sproul+Hall.JPG?format=1000w"  width="320" height="240" class="SproulHall"></img>
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{sproulHallOverallAverage !== undefined ? sproulHallOverallAverage.toFixed(1) : sproulHallOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Cleanliness: </span>{sproulHallAverageRatings[0] !== undefined ? sproulHallAverageRatings[0].toFixed(1) : sproulHallAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Noise: </span>{sproulHallAverageRatings[1] !== undefined ? sproulHallAverageRatings[1].toFixed(1) : sproulHallAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Living Space: </span>{sproulHallAverageRatings[2] !== undefined ? sproulHallAverageRatings[2].toFixed(1) : sproulHallAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{sproulHallAverageRatings[3] !== undefined ? sproulHallAverageRatings[3].toFixed(1) : sproulHallAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Social Life: </span>{sproulHallAverageRatings[4] !== undefined ? sproulHallAverageRatings[4].toFixed(1) : sproulHallAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
+      <div class="ListOfReviews">
+      <h3>Leave a Review:</h3>
+        {ReviewDatabase("SproulHall")}
+        </div>
+      </div>
+    );
+  }
+
+  function displayCoveLanding(){
+    return (
+      <div>
+        <br />
+      <h3>Sproul Cove/Landing</h3>
+      <div class="flex-container">
+        <img src="https://wp.dailybruin.com/images/2013/09/743be4cd-e4ee-4c1b-b7d0-918032f1035b.jpg"  width="240" height="320" class="CoveLanding"></img>
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{coveLandingOverallAverage !== undefined ? coveLandingOverallAverage.toFixed(1) : coveLandingOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Cleanliness: </span>{coveLandingAverageRatings[0] !== undefined ? coveLandingAverageRatings[0].toFixed(1) : coveLandingAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Noise: </span>{coveLandingAverageRatings[1] !== undefined ? coveLandingAverageRatings[1].toFixed(1) : coveLandingAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Living Space: </span>{coveLandingAverageRatings[2] !== undefined ? coveLandingAverageRatings[2].toFixed(1) : coveLandingAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{coveLandingAverageRatings[3] !== undefined ? coveLandingAverageRatings[3].toFixed(1) : coveLandingAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Social Life: </span>{coveLandingAverageRatings[4] !== undefined ? coveLandingAverageRatings[4].toFixed(1) : coveLandingAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
+      <div class="ListOfReviews">
+      <h3>Leave a Review:</h3>
+        {ReviewDatabase("CoveLanding")}
+        </div>
+      </div>
+    );
+  }
+
+  function displaySaxon(){
+    return (
+      <div>
+        <br />
+      <h3>Saxon Suites</h3>
+      <div class="flex-container">
+        <img src="https://images.adsttc.com/media/images/5745/aa80/e58e/ceaa/8500/0022/newsletter/ArchDaily_UCLA_Saxon_20.jpg?1464183401"  width="360" height="240" class="Saxon"></img>
+        <div class="rating-section">
+        <h4>Overall Rating:</h4> <p className="specialBlueText">{saxonOverallAverage !== undefined ? saxonOverallAverage.toFixed(1) : saxonOverallAverage}/5</p>
+        <div class="rating">
+        <span className="blueText">Cleanliness: </span>{saxonAverageRatings[0] !== undefined ? saxonAverageRatings[0].toFixed(1) : saxonAverageRatings[0]}/5 <br /><br />
+      <span className="blueText">Noise: </span>{saxonAverageRatings[1] !== undefined ? saxonAverageRatings[1].toFixed(1) : saxonAverageRatings[1]}/5 <br /><br />
+      <span className="blueText">Living Space: </span>{saxonAverageRatings[2] !== undefined ? saxonAverageRatings[2].toFixed(1) : saxonAverageRatings[2]}/5 <br /><br />
+      <span className="blueText">Location: </span>{saxonAverageRatings[3] !== undefined ? saxonAverageRatings[3].toFixed(1) : saxonAverageRatings[3]}/5 <br /><br />
+      <span className="blueText">Social Life: </span>{saxonAverageRatings[4] !== undefined ? saxonAverageRatings[4].toFixed(1) : saxonAverageRatings[4]}/5 <br /><br />
+      </div>
+      </div>
+      </div>
+      <div class="ListOfReviews">
+      <h3>Leave a Review:</h3>
+        {ReviewDatabase("Saxon")}
+        </div>
+      </div>
+    );
+  }
+
   function handleSearch() {
     retrieveMatchingResults(searchTerm).then((searchMatches) => {
       setMatchingResults(searchMatches);
@@ -485,6 +640,18 @@ function Dorms(){
         <br />
         <br />
         {sortedNames[8]()}
+        <br />        
+        <br />
+        {sortedNames[9]()}
+        <br />
+        <br />
+        {sortedNames[10]()}
+        <br />
+         <br />
+        {sortedNames[11]()}
+        <br />
+        <br />
+        {sortedNames[12]()}
         <br />
     </div>) : 
       (<div>
@@ -513,6 +680,18 @@ function Dorms(){
         <br />
         <br />
         {displayHollyGardenia()}
+        <br />
+        <br />
+        {displaySunsetVillage()}
+        <br />
+        <br />
+        {displaySproulHall()}
+        <br />
+        <br />
+        {displayCoveLanding()}
+        <br />
+        <br />
+        {displaySaxon()}
         <br />
       </div>)
       }
@@ -551,6 +730,10 @@ const findMatches = async(userSearch) => {
   const hitchCollectionRef = collection(db, "Hitch");
   const rieberHallCollectionRef = collection(db, "rieberHall");
   const vistaTerraceCollectionRef = collection(db, "RieberVista");
+  const sunsetVillageCollectionRef = collection(db, "SunsetVillage");
+  const sproulHallCollectionRef = collection(db, "SproulHall");
+  const coveLandingCollectionRef = collection(db, "CoveLanding");
+  const saxonCollectionRef = collection(db, "Saxon");
 
   const readInHedrickReviews = await readInSearchData(hedrickCollectionRef);
   const readInCentennialReviews = await readInSearchData(centennialCollectionRef);
@@ -561,6 +744,10 @@ const findMatches = async(userSearch) => {
   const readInHitchReviews = await readInSearchData(hitchCollectionRef);
   const readInrieberHallReviews = await readInSearchData(rieberHallCollectionRef);
   const readInVistaTerraceReviews = await readInSearchData(vistaTerraceCollectionRef);
+  const readInSunsetVillageReviews = await readInSearchData(sunsetVillageCollectionRef);
+  const readInSproulHallReviews = await readInSearchData(sproulHallCollectionRef);
+  const readInCoveLandingReviews = await readInSearchData(coveLandingCollectionRef);
+  const readInSaxonReviews = await readInSearchData(saxonCollectionRef);
 
   let allRevs = [];
 
@@ -599,6 +786,22 @@ const findMatches = async(userSearch) => {
 
   readInVistaTerraceReviews.forEach((review) => {
     allRevs.push("Rieber Vista/Terrace: \"" + review.Review + "\""); 
+  });
+
+  readInSunsetVillageReviews.forEach((review) => {
+    allRevs.push("Sunset Village: \"" + review.Review + "\""); 
+  });
+
+  readInSproulHallReviews.forEach((review) => {
+    allRevs.push("Sproul Hall: \"" + review.Review + "\"");
+  });
+
+  readInCoveLandingReviews.forEach((review) => {
+    allRevs.push("Sproul Cove/Landing: \"" + review.Review + "\"");
+  });
+
+  readInSaxonReviews.forEach((review) => {
+    allRevs.push("Saxon Suites: \"" + review.Review + "\"");
   });
 
   let matchingElements = [];

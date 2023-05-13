@@ -1,8 +1,6 @@
 TODO:
 -Compeltely redo styling lol, lowkey like bruinwalk, make boxes round and coloring white and blue themed
 
--Add saxon, sproul landing/cove, sunset, sproul hall to dorms
-
 -Add university apartments
 
 -Add list of names of each facility at top of it corresponding page, when clicked, should take you to the facility's picture and reviews

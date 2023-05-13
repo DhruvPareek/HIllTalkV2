@@ -230,6 +230,26 @@ App {
     border: 5px solid rgb(39, 116, 174);
     width: 20%;
   }
+
+  .SunsetVillage{
+    border: 5px solid rgb(39, 116, 174);
+    /* width: 20%; */
+  }
+
+  .SproulHall{
+    border: 5px solid rgb(39, 116, 174);
+    /* width: 20%; */
+  }
+
+  .CoveLanding{
+    border: 5px solid rgb(39, 116, 174);
+    /* width: 20%; */
+  }
+
+  .Saxon{
+    border: 5px solid rgb(39, 116, 174);
+    /* width: 20%; */
+  }
   /*formatting pictures of each dining hall*/
   /*formatting pictures of each dining hall*/
 
