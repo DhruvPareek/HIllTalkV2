@@ -210,7 +210,6 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-        <h3>Leave a Review:</h3>
         {ReviewDatabase("RendeWest")}
         </div>
         </div>
@@ -235,7 +234,6 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-        <h3>Leave a Review:</h3>
         {ReviewDatabase("RendeEast")}
         </div>
         </div>
@@ -260,7 +258,6 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-        <h3>Leave a Review:</h3>
         {ReviewDatabase("De Neve")}
         </div>
       </div>
@@ -286,7 +283,6 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-        <h3>Leave a Review:</h3>
         {ReviewDatabase("Epicuria")}
         </div>
       </div>
@@ -311,7 +307,6 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-        <h3>Leave a Review:</h3>
         {ReviewDatabase("Bplate")}
         </div>
       </div>
@@ -336,7 +331,6 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-        <h3>Leave a Review:</h3>
         {ReviewDatabase("Study")}
         </div>
       </div>
@@ -361,7 +355,6 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-        <h3>Leave a Review:</h3>
         {ReviewDatabase("Bcafe")}
         </div>
       </div>
@@ -386,7 +379,6 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-        <h3>Leave a Review:</h3>
         {ReviewDatabase("BruinBowl")}
         </div>
       </div>
@@ -411,7 +403,6 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-        <h3>Leave a Review:</h3>
         {ReviewDatabase("Feast")}
         </div>
       </div>
@@ -436,7 +427,6 @@ function DiningHalls() {
       </div>
       </div>
         <div class="ListOfReviews">
-        <h3>Leave a Review:</h3>
         {ReviewDatabase("Drey")}
         </div>
       </div>
@@ -748,6 +738,7 @@ function ReviewDatabase(string){
     const [reducerValue, forceUpdate] = useReducer(x => x+1, 0);
 
     const [showAllReviews, setShowAllReviews] = useState(false);
+    const [leaveReview, setLeaveReview] = useState(false);
 
 
     const [user, setUser] = useState({});
@@ -767,6 +758,7 @@ function ReviewDatabase(string){
       }, [reducerValue])
     //end of what you need to copy
     const createReview = async () => {
+      setLeaveReview(false);
       if (logged){
         if((newSeatingRating != -1 && newTimeRating != -1 && newHealthRating != -1 && newQualityRating != -1 && newReview != "" &&  newSeatingRating >=0 && newSeatingRating <=5 && newTimeRating >= 0 && newTimeRating <= 5 && newHealthRating >= 0 && newHealthRating <= 5 && newQualityRating >= 0 && newQualityRating <= 5)){
         await addDoc(ReviewCollectionRef, { Review: newReview, SeatingRating: Number(newSeatingRating), TimeRating: Number(newTimeRating), HealthRating: Number(newHealthRating), QualityRating: Number(newQualityRating), 
@@ -871,17 +863,29 @@ function ReviewDatabase(string){
       }
     }
 
+    function leaveAReview(){
+      if(leaveReview == false){
+        setLeaveReview(true);
+      }else{
+        setLeaveReview(false);
+      }
+    }
+
     // jsx that displays on the Dining Halls page
     return (
       <div className="ReviewDatabase">
+      <button onClick={leaveAReview} className="rev-button"> Leave a Review</button>
+      {leaveReview ? (
       <div className="form-container">
-      
-        <input
+      <textarea
         placeholder="Review. . ."
         onChange={(event) => {
           setNewReview(event.target.value);
         }}
-        class="ReviewBox"/>
+        className="ReviewBox"
+        rows="8"  // change this to increase/decrease height
+        cols="50" // change this to increase/decrease width
+      />
       <div className="input-group-horiz">
       <p className="no-margin">Healthiness: 
         <input
@@ -928,11 +932,9 @@ function ReviewDatabase(string){
         }}
         class="RatingBox"
       /></p>
-
       <button onClick={createReview} className="rev-button"> Submit Review</button>
-
       </div>
-      </div>
+      </div>) : null}
         {/* DISPLAYING MOST POPULAR/AGREED UPON REVVIEW */}
         <h3>Top Review:</h3>
           {Reviews.length > 0 ? (<div>
@@ -959,11 +961,8 @@ function ReviewDatabase(string){
             <p><span className="RevTitles">Healthiness: </span><span>{review.HealthRating}/5</span><span className="RevTitles">  |  Tastiness: </span><span>{review.QualityRating}/5</span><span className="RevTitles">  |  Wait Time: </span><span>{review.TimeRating}/5</span><span className="RevTitles">  |  Availability of Seating: </span><span>{review.SeatingRating}/5</span></p>
 
             {/* Display upvotes */}
-            <button onClick={() => {upVote(review.id, review.upvotes, review.userEmail)}} class="thumbsup"><span role="img" aria-label="thumbs-up">
-        &#x1F44D;</span></button>{review.upvotes}
-        <button onClick={() => {downVote(review.id, review.downvotes, review.userEmail)}} class="thumbsdown"><span role="img" aria-label="thumbs-down">
-        &#x1F44E;
-      </span></button>{review.downvotes}      
+            <button onClick={() => {upVote(review.id, review.upvotes, review.userEmail)}} class="thumbsup"><span role="img" aria-label="thumbs-up">&#x1F44D;</span></button>{review.upvotes}
+        <button onClick={() => {downVote(review.id, review.downvotes, review.userEmail)}} class="thumbsdown"><span role="img" aria-label="thumbs-down">&#x1F44E;</span></button>{review.downvotes}      
                 </div>
           );}): null}
     </div>);
@@ -971,5 +970,3 @@ function ReviewDatabase(string){
   
 
 export default DiningHalls;
-
-

@@ -249,7 +249,6 @@ function Dorms(){
       </div>
       </div>
         <div class="ListOfReviews">
-          <h3>Leave a Review:</h3>
         {ReviewDatabase("HeddySummit")}
         </div>
         </div>
@@ -275,7 +274,6 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-      <h3>Leave a Review:</h3>
         {ReviewDatabase("Hitch")}
         </div>
       </div>
@@ -302,7 +300,6 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-      <h3>Leave a Review:</h3>
       {ReviewDatabase("DeNeve")}
       </div>
       </div>
@@ -328,7 +325,6 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-      <h3>Leave a Review:</h3>
         {ReviewDatabase("Centennial")}
         </div>
       </div>
@@ -354,7 +350,6 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-      <h3>Leave a Review:</h3>
         {ReviewDatabase("RieberVista")}
       </div>
       </div>
@@ -380,7 +375,6 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-      <h3>Leave a Review:</h3>
         {ReviewDatabase("Dykstra")}
         </div>
       </div>
@@ -406,7 +400,6 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-      <h3>Leave a Review:</h3>
         {ReviewDatabase("Hedrick")}
       </div>
       </div>
@@ -432,7 +425,6 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-      <h3>Leave a Review:</h3>
       {ReviewDatabase("RieberHall")}
       </div>
       </div>
@@ -458,7 +450,6 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-      <h3>Leave a Review:</h3>
         {ReviewDatabase("HollyGardenia")}
         </div>
       </div>
@@ -484,7 +475,6 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-      <h3>Leave a Review:</h3>
         {ReviewDatabase("SunsetVillage")}
         </div>
       </div>
@@ -510,7 +500,6 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-      <h3>Leave a Review:</h3>
         {ReviewDatabase("SproulHall")}
         </div>
       </div>
@@ -536,7 +525,6 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-      <h3>Leave a Review:</h3>
         {ReviewDatabase("CoveLanding")}
         </div>
       </div>
@@ -562,7 +550,6 @@ function Dorms(){
       </div>
       </div>
       <div class="ListOfReviews">
-      <h3>Leave a Review:</h3>
         {ReviewDatabase("Saxon")}
         </div>
       </div>
@@ -908,6 +895,8 @@ function ReviewDatabase(string){
   const [SocialLifeRating, setSocialLifeRating] = useState(-1);  
 
   const [showAllReviews, setShowAllReviews] = useState(false);
+  const [leaveReview, setLeaveReview] = useState(false);
+
   const [allReviews, setReview] = useState([]);
   const reviewCollectionRef = collection(db, string) //grabbing "CentennialReviews" collection and sets it equal to var
   const [reducerValue, forceUpdate] = useReducer(x => x+1, 0);
@@ -929,6 +918,7 @@ function ReviewDatabase(string){
       },[reducerValue])
 
     const createReview = async () => {
+    setLeaveReview(false);
     if (logged){
       if (SocialLifeRating <= 5 && SocialLifeRating >=0 && LocationRating <= 5 && LocationRating >= 0 && SpaceRating <= 5 && SpaceRating >= 0 && NoiseRating <=5 && NoiseRating >=0 && CleanlinessRating <= 5 && CleanlinessRating >= 0 && input != "") {
         await addDoc(reviewCollectionRef, { Review: input , LocationRating: Number(LocationRating), SocialLifeRating: Number(SocialLifeRating), NoiseRating: Number(NoiseRating), SpaceRating: Number(SpaceRating), CleanlinessRating: Number(CleanlinessRating), 
@@ -1055,18 +1045,28 @@ function ReviewDatabase(string){
       }
     }
 
+    function leaveAReview(){
+      if(leaveReview == false){
+        setLeaveReview(true);
+      }else{
+        setLeaveReview(false);
+      }
+    }
+
   return (
     <div className="ReviewDatabase">
-    
+    <button onClick={leaveAReview} className="rev-button"> Leave a Review</button>
+    {leaveReview ? (
     <div className="form-container">
-    <input 
-      placeholder="Review. . ." 
-      onChange={(event) => 
-        {setInput(event.target.value)
-      }}
-      class="ReviewBox"
-    />
-
+      <textarea
+        placeholder="Review. . ."
+        onChange={(event) => {
+          setInput(event.target.value);
+        }}
+        className="ReviewBox"
+        rows="8"  // change this to increase/decrease height
+        cols="50" // change this to increase/decrease width
+      />
     <div className="input-group-horiz">
     <p className="no-margin">Cleanliness: 
     <input 
@@ -1127,11 +1127,8 @@ function ReviewDatabase(string){
       }}
       class="RatingBox"
     /></p>
-    
     <button onClick={createReview} className="rev-button">Submit Review</button> 
-
-    </div>
-    </div>
+    </div></div>) : null}
         {/* DISPLAYING MOST POPULAR/AGREED UPON REVVIEW */}
         <h3>Top Review:</h3>
           {allReviews.length > 0 ? (<div>

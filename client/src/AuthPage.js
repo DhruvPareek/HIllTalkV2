@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  fetchSignInMethodsForEmail,
 } from "firebase/auth";
 import { auth } from "./firebase-config";
 import "./App.css";
@@ -33,18 +34,26 @@ export default function AuthPage() {
     // create a valid username and password to register account
     const register = async () => {
       try {
-        const user = await createUserWithEmailAndPassword(
-          auth,
-          registerEmail,
-          registerPassword
-        );
-        
+        const signInMethods = await fetchSignInMethodsForEmail(auth, registerEmail);
+        if (signInMethods.length > 0) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "Email is already registered"
+          });
+        } else {
+          const user = await createUserWithEmailAndPassword(
+            auth,
+            registerEmail,
+            registerPassword
+          );
+        }    
       } catch (error) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: "Email may not be valid or already registered"
-        }) 
+          text: error.message,
+        });
       }
     };
   

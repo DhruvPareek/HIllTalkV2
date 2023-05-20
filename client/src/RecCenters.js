@@ -139,7 +139,6 @@ function RecCenters() {
       </div>
       </div>
         <div class="ListOfReviews">
-          <h3>Leave a Review:</h3>
         {ReviewDatabase("JWCReviews")}
         </div>
         </div>
@@ -165,7 +164,6 @@ function RecCenters() {
       </div>
       </div>
       <div class="ListOfReviews">
-        <h3>Leave a Review:</h3>
       {ReviewDatabase("BFITReviews")}
       </div>
       </div>
@@ -191,7 +189,6 @@ function RecCenters() {
       </div>
       </div>
 <div class="ListOfReviews">
-          <h3>Leave a Review:</h3>
         {ReviewDatabase("SunsetRecReviews")}
         </div>
       </div>
@@ -217,7 +214,6 @@ function RecCenters() {
       </div>
       </div>
       <div class="ListOfReviews">
-          <h3>Leave a Review:</h3>
         {ReviewDatabase("HitchBBReviews")}
         </div>
       </div>
@@ -243,7 +239,6 @@ function RecCenters() {
       </div>
       </div>
       <div class="ListOfReviews">
-          <h3>Leave a Review:</h3>
         {ReviewDatabase("IMFieldReviews")}
         </div>
       </div>
@@ -501,6 +496,8 @@ function ReviewDatabase(string){
     const [reducerValue, forceUpdate] = useReducer(x => x+1, 0);
 
     const [showAllReviews, setShowAllReviews] = useState(false);
+    const [leaveReview, setLeaveReview] = useState(false);
+
     const [reviews, setReview] = useState([]);
     const reviewCollectionRef = collection(db, string)
     const [user, setUser] = useState({});
@@ -519,6 +516,7 @@ function ReviewDatabase(string){
       }, [reducerValue])  
 
     const createReview = async() => {
+      setLeaveReview(false);
     if (logged){
       if (BusinessRating != -1 && LocationRating != -1 && SpaceRating != -1 && HoursRating != -1 && FacilityQRating != -1 && input != "" && BusinessRating <= 5 && BusinessRating >= 0 && LocationRating <= 5 && LocationRating >= 0 && SpaceRating >= 0 && SpaceRating <= 5 && HoursRating >= 0 && HoursRating <= 5 && FacilityQRating >= 0 && FacilityQRating <= 5) {
         await addDoc(reviewCollectionRef, { TextReview: input ,BusinessRating: BusinessRating, LocationRating: LocationRating, SpaceRating: SpaceRating, HoursRating: HoursRating, FacilityQRating : FacilityQRating, 
@@ -625,17 +623,28 @@ function ReviewDatabase(string){
       }
     }
 
+    function leaveAReview(){
+      if(leaveReview == false){
+        setLeaveReview(true);
+      }else{
+        setLeaveReview(false);
+      }
+    }
+
     return (
       <div className="ReviewDatabase">
+      <button onClick={leaveAReview} className="rev-button"> Leave a Review</button>
+      {leaveReview ? (
       <div className="form-container">
-
-      <input
+      <textarea
         placeholder="Review. . ."
         onChange={(event) => {
           setInput(event.target.value);
         }}
-        class="ReviewBox"
-        />
+        className="ReviewBox"
+        rows="8"  // change this to increase/decrease height
+        cols="50" // change this to increase/decrease width
+      />
       <div className="input-group-horiz">
       <p className="no-margin">Facility Maintenance:
       <input
@@ -695,10 +704,8 @@ function ReviewDatabase(string){
         }}
         class="RatingBox"
         /></p>
-        
         <button onClick={createReview} className="rev-button">Submit Review</button>
-        </div>
-        </div>  
+        </div></div>) : null}
         {/* DISPLAYING MOST POPULAR/AGREED UPON REVVIEW */}
         <h3>Top Review:</h3>
           {reviews.length > 0 ? (<div>
