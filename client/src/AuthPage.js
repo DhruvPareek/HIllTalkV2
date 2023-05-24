@@ -5,6 +5,7 @@ import {
   onAuthStateChanged,
   signOut,
   fetchSignInMethodsForEmail,
+  sendEmailVerification,
 } from "firebase/auth";
 import { auth } from "./firebase-config";
 import "./App.css";
@@ -42,12 +43,26 @@ export default function AuthPage() {
             text: "Email is already registered"
           });
         } else {
-          const user = await createUserWithEmailAndPassword(
+          const userCredential = await createUserWithEmailAndPassword(
             auth,
             registerEmail,
             registerPassword
           );
-        }    
+          
+          if (userCredential.user) {
+            await sendEmailVerification(userCredential.user);
+            Swal.fire({
+              icon: 'warning',
+              title: 'Wait!',
+              //add a new line inbetween the two strings on the next line
+              text: "Please verify your email before logging in (you were just sent an email). If you don't see it, check your spam folder.",
+              allowOutsideClick: false,
+              allowEscapeKey: false,
+              allowEnterKey: false
+            });
+            await signOut(auth);
+          }
+        }
       } catch (error) {
         Swal.fire({
           icon: 'error',
@@ -58,21 +73,32 @@ export default function AuthPage() {
     };
   
     //login function that signs in user
-    const login = async () => {
-      try {
-        const user = await signInWithEmailAndPassword(
-          auth,
-          loginEmail,
-          loginPassword
-        );
-      } catch (error) {
+const login = async () => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      loginEmail,
+      loginPassword
+    );
+    if (userCredential.user) {
+      if (!userCredential.user.emailVerified) {
+        await signOut(auth);
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: "Incorrect email or password"
-        }) 
+          text: "Please verify your email before logging in (you were sent an email when you registered)"
+        })
       }
-    };
+    }
+  } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: "Incorrect email or password"
+    }) 
+  }
+};
+
   
     const logout = async () => {
       await signOut(auth);
