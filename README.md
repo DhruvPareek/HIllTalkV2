@@ -1,16 +1,3 @@
-TODO:
--Compeltely redo styling lol, lowkey like bruinwalk, make boxes round and coloring white and blue themed
-
--Add university apartments
-
--Add list of names of each facility at top of it corresponding page, when clicked, should take you to the facility's picture and reviews
-
--Add time that each review was posted
-
--Check if any email works
-
--Make a "leave a review" a button that you press to display the stuff to leave a review
-
 HillTalk
 
 Introduction: 
