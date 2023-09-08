@@ -1,7 +1,7 @@
 HillTalk
 
 Introduction: 
-The purpose of this project is to design a full-stack web appliaction. HillTalk enables users with the following features:
+This is a full-stack web appliaction to rate and review different features of UCLA on-campus housing. HillTalk enables users with the following features:
 1. Users can register and login to an account, regardless of what local device they are using to run HillTalk.
 2. Users can read the reviews from other users of any Dorm, Dining Hall, and/or Recreation Center on UCLA's "Hill". Each review has:
     a. a text comment, 
